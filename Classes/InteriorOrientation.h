@@ -13,17 +13,17 @@
 class InteriorOrientation
 {
 public:
-    Point2<double> get_focalLength() const;
+    double get_focalLength() const;
 
-    void set_focalLength(Point2<double> _focalLength);
+    void set_focalLength(double _focalLength);
 
-    Point2<double> get_principalPoint() const;
+    Point get_principalPoint() const;
 
-    void set_principalPoint(Point2<double> _principalPoint);
+    void set_principalPoint(Point _principalPoint);
 
 private:
-    Point2<double> _focalLength;
-    Point2<double> _principalPoint;
+    double _focalLength;
+    Point _principalPoint;
 
 public:
 /*    const double getFocalLength();

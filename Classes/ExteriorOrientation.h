@@ -15,16 +15,20 @@
 class ExteriorOrientation
 {
 private:
-    std::vector<double> _rotation;
-    std::vector<double> _translation;
+    vector _rotation;
+    vector _translation;
 public:
-   const std::vector<double>  &get_rotation() const;
+   const vector &get_rotation() const;
 
-    void set_rotation(const std::vector<double> &_rotation);
+    /**
+     * Sets rotation, in degrees as a vector with 3 elements; x y z
+     * @param _rotation rotation vector, degrees
+     */
+    void set_rotation(const vector &_rotation);
 
-    const std::vector<double> &get_translation() const;
+    const vector &get_translation() const;
 
-    void set_translation(const std::vector<double> &_translation);
+    void set_translation(const vector &_translation);
 
     /**
      *
