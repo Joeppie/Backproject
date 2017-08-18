@@ -136,8 +136,8 @@ bool Image::backProject(const vector& worldCoordinate, Point &imageCoordinate)
         xNorm(1,1)= x(1,1)/x(3,1);
         xNorm(2,1)= x(2,1)/x(3,1);
      */
-#warning the calculation below will always fail; we're attempting to multiply a 3x3 mnatrix with a 3x4 one; this fails because the number of rows on the 2nd matrix must be equal to col on 1st
-    matrix x = multiply(P, X); //P has 4 columns, but X is a column vector of length 3!
+
+    matrix x = multiply(P, X);
 
     printMatrix(x);
 
