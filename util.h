@@ -9,20 +9,12 @@
 #include <array>
 #include <iostream>
 
-template<class T>
-struct Point2
+struct Point
 {
-    T x;
-    T y;
+    double x;
+    double y;
 };
 
-template<class T>
-struct Point3
-{
-    T x;
-    T y;
-    T z;
-};
 
 //shorthand forms that are applicable to our application.
 using matrix = std::vector<std::vector<double>>;

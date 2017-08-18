@@ -2,6 +2,7 @@
 // Created by LijnenJJ on 16-8-2017.
 //
 
+#include <math.h>
 #include "Image.h"
 #include "../util.h"
 
@@ -58,9 +59,12 @@ void Image::set_EO(const std::shared_ptr<ExteriorOrientation> &_EO)
 Image::Image(int _height, int _width, const std::string &_fileName, const std::shared_ptr<InteriorOrientation> &_IO,
              const std::shared_ptr<ExteriorOrientation> &_EO) : _height(_height), _width(_width), _fileName(_fileName),
                                                                 _IO(_IO), _EO(_EO)
-{}
+{
 
-bool Image::backProject(vector worldCoordinate, Point2<double> &imageCoordinate)
+
+}
+
+bool Image::backProject(vector worldCoordinate, Point &imageCoordinate)
 {
 
     //Backproject use the transpose of the rotation+translation matrix.
@@ -68,6 +72,21 @@ bool Image::backProject(vector worldCoordinate, Point2<double> &imageCoordinate)
 
 
     matrix transformation = Image::_EO->get_transformation();
+
+
+    //K=[F 0 cxp; 0 F cyp; 0 0 1]; %Camera matrix
+
+    double f =  this->get_IO()->get_focalLength();
+
+
+
+
+
+    matrix rTranspose = {{1,            0,              0},
+                         {0,            cos(M_PI_2),    -sin(M_PI_2)},
+                         {0,            sin(M_PI_2),    cos(M_PI_2)}
+    };
+
 
 
 
