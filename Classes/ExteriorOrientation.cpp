@@ -27,10 +27,11 @@ void ExteriorOrientation::set_translation(const std::vector<double> &_translatio
 
 matrix ExteriorOrientation::get_transformation()
 {
+    const double deg_to_rad = 180/M_PI;
     //Matrices for rotations around various axes
-    const double y = ExteriorOrientation::_rotation[1];
-    const double x = ExteriorOrientation::_rotation[0];
-    const double z = ExteriorOrientation::_rotation[2];
+    const double y = ExteriorOrientation::_rotation[1]*deg_to_rad;
+    const double x = ExteriorOrientation::_rotation[0]*deg_to_rad;
+    const double z = ExteriorOrientation::_rotation[2]*deg_to_rad;
 
     /*rty=[cos(pitch*degtorad_i),0, sin(pitch*degtorad_i);
             0 , 1, 0;

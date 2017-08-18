@@ -70,22 +70,25 @@ bool Image::backProject(vector worldCoordinate, Point &imageCoordinate)
     //Backproject use the transpose of the rotation+translation matrix.
     //this->_eo->
 
-
     matrix transformation = Image::_EO->get_transformation();
-
-
     //K=[F 0 cxp; 0 F cyp; 0 0 1]; %Camera matrix
 
+    //Create camera matrix
     double f =  this->get_IO()->get_focalLength();
+    Point pp = this->get_IO()->get_principalPoint();
 
+    matrix k = {{f, 0,  pp.x},
+                {0, f,  pp.y},
+                {0, 0,     0}};
 
-
-
-
-    matrix rTranspose = {{1,            0,              0},
+    matrix rTranspose = {{1,            0,                         0},
                          {0,            cos(M_PI_2),    -sin(M_PI_2)},
-                         {0,            sin(M_PI_2),    cos(M_PI_2)}
-    };
+                         {0,            sin(M_PI_2),    cos(M_PI_2)}};
+
+    //projection matrix is defined as P=K*[Rtranspose*RM -(Rtranspose*RM)*C];
+    matrix rTranspose_X_Rm(3,vector(3));
+
+    multiply(rTranspose,transformation,rTranspose_X_Rm);
 
 
 
