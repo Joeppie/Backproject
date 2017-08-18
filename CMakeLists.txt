@@ -7,5 +7,3 @@ set(CMAKE_CXX_FLAGS "-Wfatal-errors -fpermissive")
 
 set(SOURCE_FILES main.cpp thirdparty/csv.h Classes/InteriorOrientation.cpp Classes/InteriorOrientation.h Classes/Image.cpp Classes/Image.h Classes/ExteriorOrientation.cpp Classes/ExteriorOrientation.h util.h util.cpp)
 add_executable(Backproject ${SOURCE_FILES})
-
-configure_file(test.tif test.tif COPYONLY)
