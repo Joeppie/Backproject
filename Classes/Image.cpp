@@ -70,7 +70,9 @@ bool Image::backProject(const vector& worldCoordinate, Point &imageCoordinate)
     //Create a column 'vector' (or really just a 3x1 matrix, so that we can multiply and happily use results.)
     matrix X = {{worldCoordinate[0]},
                 {worldCoordinate[1]},
-                {worldCoordinate[2]}};
+                {worldCoordinate[2]},
+                {1}
+    };
 
     printMatrix(X);
 
@@ -121,7 +123,7 @@ bool Image::backProject(const vector& worldCoordinate, Point &imageCoordinate)
 
     printMatrix(minus_RTranspose_x_RM_x_C);
 
-    //Finally, we 'concatenate the two matrices: Rtranspose*RM and -(Rtranspose*RM)*C; that is to say; we add the fourth column to the first mentioned matrix.
+    //Finally, we horizontally concatenate the two matrices: Rtranspose*RM and -(Rtranspose*RM)*C; that is to say; we add the fourth column to the first mentioned matrix.
     matrix K_x_Rtranspose_RM_concatenatedwith_iRtranspose_RM_x_C = concatenate(rTranspose_X_Rm,
                                                                                minus_RTranspose_x_RM_x_C);
 
@@ -134,8 +136,8 @@ bool Image::backProject(const vector& worldCoordinate, Point &imageCoordinate)
         xNorm(1,1)= x(1,1)/x(3,1);
         xNorm(2,1)= x(2,1)/x(3,1);
      */
-
-    matrix x = multiply(P, X);
+#warning the calculation below will always fail; we're attempting to multiply a 3x3 mnatrix with a 3x4 one; this fails because the number of rows on the 2nd matrix must be equal to col on 1st
+    matrix x = multiply(P, X); //P has 4 columns, but X is a column vector of length 3!
 
     printMatrix(x);
 

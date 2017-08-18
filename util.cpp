@@ -4,10 +4,18 @@
 
 
 #include "util.h"
+#include <stdexcept>
 
 matrix multiply(const matrix &a,const matrix &b) {
 
+    if(a[0].size() != b.size())
+    {
+        throw std::invalid_argument( "Number of rows in the second matrix does not match number of columns in the first, multiplication is not possible." );
+    }
+
     matrix c(a.size(),vector(b[0].size()));
+
+
 
     //todo: VERIFY that matrix A and B can even be multiplied; the amount of rows in B should be equal to the amount of columns in A.
     for (int row = 0; row < a.size(); row++) {

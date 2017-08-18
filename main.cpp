@@ -42,6 +42,7 @@ int main()
 {
     testCallToBackProject();
 
+    return 0;
     int h;
     matrix obj_points; //Matrix containing the object points
     std::cout << "Welcome to a our simple Photogrammetry backprojection program \n";
@@ -78,7 +79,6 @@ int main()
                 double tempZ;
                 std::cin >> tempZ;
                 row.push_back(tempZ);
-
 
                 obj_points.push_back(row);
             }
