@@ -1,14 +1,47 @@
 #include <iostream>
+#include <memory>
+
 #include "util.h"
-/*
+
+
 #include"Classes/image.h"
 #include"Classes/InteriorOrientation.h"
 #include"Classes/ExteriorOrientation.h"
-*/
+
+
+void testCallToBackProject()
+{
+
+
+    std::shared_ptr<InteriorOrientation> IO (new InteriorOrientation);
+    std::shared_ptr<ExteriorOrientation> EO(new ExteriorOrientation);
+
+    IO->set_focalLength(233);
+    IO->set_principalPoint(Point(255,240));
+
+    vector translation  {200,300,500};
+    EO->set_translation(translation);
+    vector rotation{20,10,100};
+    EO->set_rotation(rotation);
+
+    Image image(400,600,"testImage",IO,EO);
+
+
+    vector coordinate = {0,0,0};
+    Point row_column(0,0);
+    bool inside = image.backProject(coordinate,row_column);
+
+    std::string result = inside ? "inside the image" :  "sadly, not located in the image!";
+
+    std::cout << "the point was " << result << std::endl;
+
+}
 
 
 int main()
 {
+    testCallToBackProject();
+
     int h;
     matrix obj_points; //Matrix containing the object points
     std::cout << "Welcome to a our simple Photogrammetry backprojection program \n";

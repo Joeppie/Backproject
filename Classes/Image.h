@@ -31,7 +31,7 @@ public:
           const std::shared_ptr<ExteriorOrientation> &_EO);
 
 
-    bool backProject(vector worldCoordinate,Point &imageCoordinate);
+    bool backProject(const vector& worldCoordinate,Point &imageCoordinate);
 
 
     //Getters and setters

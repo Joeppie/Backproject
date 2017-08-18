@@ -15,6 +15,8 @@ class InteriorOrientation
 public:
     double get_focalLength() const;
 
+    InteriorOrientation();
+
     void set_focalLength(double _focalLength);
 
     Point get_principalPoint() const;

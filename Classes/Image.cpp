@@ -64,13 +64,15 @@ Image::Image(int _height, int _width, const std::string &_fileName, const std::s
 
 }
 
-bool Image::backProject(vector worldCoordinate, Point &imageCoordinate)
+bool Image::backProject(const vector& worldCoordinate, Point &imageCoordinate)
 {
 
     //Create a column 'vector' (or really just a 3x1 matrix, so that we can multiply and happily use results.)
     matrix X = {{worldCoordinate[0]},
-                {worldCoordinate[0]},
-                {worldCoordinate[0]}};
+                {worldCoordinate[1]},
+                {worldCoordinate[2]}};
+
+    printMatrix(X);
 
     //Backproject use the transpose of the rotation+translation matrix.
     //this->_eo->
@@ -87,18 +89,26 @@ bool Image::backProject(vector worldCoordinate, Point &imageCoordinate)
                 {0, f, pp.y},
                 {0, 0, 0}};
 
+    printMatrix(k);
+
     //This matrix is used to help create a transposed matrix.
     matrix rTranspose = {{1, 0,           0},
                          {0, cos(M_PI_2), -sin(M_PI_2)},
                          {0, sin(M_PI_2), cos(M_PI_2)}};
+
+    printMatrix(rTranspose);
 
     //projection matrix is defined as P=K*[Rtranspose*RM -(Rtranspose*RM)*C];
     //The code below implements this.
 
     matrix rTranspose_X_Rm = multiply(rTranspose, transformation);
 
+    printMatrix(rTranspose_X_Rm);
+
     //Create the negative version of the Rtranspose*RM matrix for second part of operation.
     matrix irTranspose = negate(rTranspose);
+
+    printMatrix(irTranspose);
 
     //Todo: In matlab we would use world coordinates as a column vector, so that we can multiply it, in our C++ code, use a 1x3 matrix.
 
@@ -109,10 +119,13 @@ bool Image::backProject(vector worldCoordinate, Point &imageCoordinate)
 
     matrix minus_RTranspose_x_RM_x_C = multiply(irTranspose, columnVectorTranslation);
 
+    printMatrix(minus_RTranspose_x_RM_x_C);
 
     //Finally, we 'concatenate the two matrices: Rtranspose*RM and -(Rtranspose*RM)*C; that is to say; we add the fourth column to the first mentioned matrix.
     matrix K_x_Rtranspose_RM_concatenatedwith_iRtranspose_RM_x_C = concatenate(rTranspose_X_Rm,
                                                                                minus_RTranspose_x_RM_x_C);
+
+    printMatrix(K_x_Rtranspose_RM_concatenatedwith_iRtranspose_RM_x_C);
 
     matrix P = multiply(k, K_x_Rtranspose_RM_concatenatedwith_iRtranspose_RM_x_C);
     /*
@@ -123,6 +136,8 @@ bool Image::backProject(vector worldCoordinate, Point &imageCoordinate)
      */
 
     matrix x = multiply(P, X);
+
+    printMatrix(x);
 
     imageCoordinate.x = x[0][0] / x[2][0];
     imageCoordinate.y = x[1][0] / x[2][0];

@@ -14,6 +14,7 @@ struct Point
     double x;
 
     Point(double x, double y);
+    Point();
 
     double y;
 };

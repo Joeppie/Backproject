@@ -16,6 +16,10 @@ class ExteriorOrientation
 {
 private:
     vector _rotation;
+public:
+    ExteriorOrientation();
+
+private:
     vector _translation;
 public:
    const vector &get_rotation() const;

@@ -73,3 +73,6 @@ matrix ExteriorOrientation::get_transformation()
 
     return RM; //Rotation matrix.
 }
+
+ExteriorOrientation::ExteriorOrientation()
+{}
