@@ -27,7 +27,7 @@ void ExteriorOrientation::set_translation(const std::vector<double> &_translatio
 
 matrix ExteriorOrientation::get_transformation()
 {
-    const double deg_to_rad = 180/M_PI;
+    const double deg_to_rad = M_PI/180.0;
     //Matrices for rotations around various axes
     const double y = ExteriorOrientation::_rotation[1]*deg_to_rad;
     const double x = ExteriorOrientation::_rotation[0]*deg_to_rad;
@@ -65,14 +65,11 @@ matrix ExteriorOrientation::get_transformation()
                         {sin(z)      ,cos(z)  ,0},
                         {0              ,0          ,1}};
 
-    matrix rotationYX(3,vector(3));
-    matrix RM(3,vector(3));
 
     //Finally:  RM=rty*rtx*rtz;
     //Implement the above as (y*x)*z, by using the matrix multiplication
-    multiply(rotationY,rotationX,rotationYX);
-    multiply(rotationYX,rotationZ,RM);
+    matrix RM = multiply(multiply(rotationY,rotationX),rotationZ);
 
 
-    return RM;
+    return RM; //Rotation matrix.
 }

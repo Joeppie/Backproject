@@ -67,32 +67,69 @@ Image::Image(int _height, int _width, const std::string &_fileName, const std::s
 bool Image::backProject(vector worldCoordinate, Point &imageCoordinate)
 {
 
+    //Create a column 'vector' (or really just a 3x1 matrix, so that we can multiply and happily use results.)
+    matrix X = {{worldCoordinate[0]},
+                {worldCoordinate[0]},
+                {worldCoordinate[0]}};
+
     //Backproject use the transpose of the rotation+translation matrix.
     //this->_eo->
 
-    matrix transformation = Image::_EO->get_transformation();
+    matrix transformation = this->_EO->get_transformation();
     //K=[F 0 cxp; 0 F cyp; 0 0 1]; %Camera matrix
 
     //Create camera matrix
-    double f =  this->get_IO()->get_focalLength();
+    double f = this->get_IO()->get_focalLength();
     Point pp = this->get_IO()->get_principalPoint();
 
-    matrix k = {{f, 0,  pp.x},
-                {0, f,  pp.y},
-                {0, 0,     0}};
+    //The camera matrix, it is populated with Interior Orientation information; focal length and principal point.
+    matrix k = {{f, 0, pp.x},
+                {0, f, pp.y},
+                {0, 0, 0}};
 
-    matrix rTranspose = {{1,            0,                         0},
-                         {0,            cos(M_PI_2),    -sin(M_PI_2)},
-                         {0,            sin(M_PI_2),    cos(M_PI_2)}};
+    //This matrix is used to help create a transposed matrix.
+    matrix rTranspose = {{1, 0,           0},
+                         {0, cos(M_PI_2), -sin(M_PI_2)},
+                         {0, sin(M_PI_2), cos(M_PI_2)}};
 
     //projection matrix is defined as P=K*[Rtranspose*RM -(Rtranspose*RM)*C];
-    matrix rTranspose_X_Rm(3,vector(3));
+    //The code below implements this.
 
-    multiply(rTranspose,transformation,rTranspose_X_Rm);
+    matrix rTranspose_X_Rm = multiply(rTranspose, transformation);
+
+    //Create the negative version of the Rtranspose*RM matrix for second part of operation.
+    matrix irTranspose = negate(rTranspose);
+
+    //Todo: In matlab we would use world coordinates as a column vector, so that we can multiply it, in our C++ code, use a 1x3 matrix.
+
+    vector translation = this->_EO->get_translation();
+    matrix columnVectorTranslation = {{translation[0]},
+                                      {translation[1]},
+                                      {translation[2]}};
+
+    matrix minus_RTranspose_x_RM_x_C = multiply(irTranspose, columnVectorTranslation);
 
 
+    //Finally, we 'concatenate the two matrices: Rtranspose*RM and -(Rtranspose*RM)*C; that is to say; we add the fourth column to the first mentioned matrix.
+    matrix K_x_Rtranspose_RM_concatenatedwith_iRtranspose_RM_x_C = concatenate(rTranspose_X_Rm,
+                                                                               minus_RTranspose_x_RM_x_C);
 
+    matrix P = multiply(k, K_x_Rtranspose_RM_concatenatedwith_iRtranspose_RM_x_C);
+    /*
+     * Matlab:
+        x = P*X;
+        xNorm(1,1)= x(1,1)/x(3,1);
+        xNorm(2,1)= x(2,1)/x(3,1);
+     */
 
-    return false;
+    matrix x = multiply(P, X);
+
+    imageCoordinate.x = x[0][0] / x[2][0];
+    imageCoordinate.y = x[1][0] / x[2][0];
+
+    //Return true when the image row-column coordinate calculated lies within the image.
+    return
+            imageCoordinate.x < this->_height && imageCoordinate.x > 0 &&
+            imageCoordinate.y < this->_height && imageCoordinate.y > 0;
 }
 

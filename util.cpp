@@ -5,7 +5,11 @@
 
 #include "util.h"
 
-void multiply(const matrix &a,const matrix &b,matrix& c) {
+matrix multiply(const matrix &a,const matrix &b) {
+
+    matrix c(a.size(),vector(b[0].size()));
+
+    //todo: VERIFY that matrix A and B can even be multiplied; the amount of rows in B should be equal to the amount of columns in A.
     for (int row = 0; row < a.size(); row++) {
         for (int col = 0; col < b[0].size(); col++) {
             // Multiply the row of A by the column of B to get the row, column of product.
@@ -14,6 +18,46 @@ void multiply(const matrix &a,const matrix &b,matrix& c) {
             }
         }
     }
+    return c;
+}
+
+matrix negate(const matrix &a) {
+    matrix result =a; //make a copy of A.
+    for(vector& row : result)
+    {
+        for (auto &value : row)
+        {
+            value =-value;
+        }
+    }
+    return result;
+}
+
+matrix concatenate(const matrix &a,const matrix &b)
+{
+    //TODO: verify that the amount of rows in B is the same as in A, otherwise the operation is invalid.
+    size_t columns = a[0].size();
+    size_t newColumns = b[0].size();
+    size_t rows = a.size();
+
+    //the result matrix has as many rows as matrix A, with each row having as many columns as A and B combined.
+    matrix c (rows,vector(columns+newColumns));
+
+    //Loop over and perform for every row..
+    for (int i = 0; i <rows ; ++i)
+    {
+        //copy and append all coumns from A to C.
+        for (int j = 0; j < columns ; ++j)
+        {
+            c[i][j] = a[i][j];
+        }
+        //Copy and append to each row all columns from B to C.
+        for (int k = 0; k < newColumns; ++k)
+        {
+            c[i][k+columns] = b[i][k];
+        }
+    }
+    return c;
 }
 
 
@@ -45,3 +89,11 @@ matrix arrayToMatrix(const double (&jaggedArray)[size_x][size_y])
     }
     return matrix;
 }
+
+/**
+ * Constructor for the point struct, so that an easy way to construct it with the right values exists.
+ * @param x x ordinate
+ * @param y y ordinate
+ */
+Point::Point(double x, double y) : x(x), y(y)
+{}

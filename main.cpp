@@ -7,10 +7,6 @@
 */
 
 
-
-
-
-
 int main()
 {
     int h;
@@ -88,9 +84,7 @@ int main()
     matrix b = {{7, 8, 9}
                ,{10, 11, 12}};
 
-    matrix c(a.size(),std::vector<double>(b[0].size()));
-
-    multiply(a,b,c);
+    matrix c = multiply(a,b);
 
     printMatrix(obj_points);
 
