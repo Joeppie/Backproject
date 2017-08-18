@@ -16,7 +16,6 @@ matrix multiply(const matrix &a,const matrix &b) {
     matrix c(a.size(),vector(b[0].size()));
 
 
-
     //todo: VERIFY that matrix A and B can even be multiplied; the amount of rows in B should be equal to the amount of columns in A.
     for (int row = 0; row < a.size(); row++) {
         for (int col = 0; col < b[0].size(); col++) {

@@ -67,7 +67,7 @@ matrix ExteriorOrientation::get_transformation()
 
 
     //Finally:  RM=rty*rtx*rtz;
-    //Implement the above as (y*x)*z, by using the matrix multiplication
+    //Implement the above as (y*x)*z, by using the matrix multiplication method... we should consider using a class with the * operator, for convenience
     matrix RM = multiply(multiply(rotationY,rotationX),rotationZ);
 
 

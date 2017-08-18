@@ -29,6 +29,7 @@ public:
 
     Image(int _height, int _width, const std::string &_fileName, const std::shared_ptr<InteriorOrientation> &_IO,
           const std::shared_ptr<ExteriorOrientation> &_EO);
+    Image();
 
 
     bool backProject(const vector& worldCoordinate,Point &imageCoordinate);

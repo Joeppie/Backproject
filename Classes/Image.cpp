@@ -6,35 +6,46 @@
 #include "Image.h"
 #include "../util.h"
 
+
+//constructors
+Image::Image()
+{}
+Image::Image(int _height, int _width, const std::string &_fileName, const std::shared_ptr<InteriorOrientation> &_IO,
+             const std::shared_ptr<ExteriorOrientation> &_EO) : _height(_height), _width(_width), _fileName(_fileName),
+                                                                _IO(_IO), _EO(_EO)
+{}
+
+//getters and setters.
+
 int Image::get_height() const
 {
     return _height;
 }
 
-/*void Image::set_height(int _height)
+void Image::set_height(int _height)
 {
     Image::_height = _height;
-}*/
+}
 
 int Image::get_width() const
 {
     return _width;
 }
 
-/*void Image::set_width(int _width)
+void Image::set_width(int _width)
 {
     Image::_width = _width;
-}*/
+}
 
 const std::string &Image::get_fileName() const
 {
     return _fileName;
 }
 
-/*void Image::set_fileName(const std::string &_fileName)
+void Image::set_fileName(const std::string &_fileName)
 {
     Image::_fileName = _fileName;
-}*/
+}
 
 const std::shared_ptr<InteriorOrientation> &Image::get_IO() const
 {
@@ -54,14 +65,6 @@ const std::shared_ptr<ExteriorOrientation> &Image::get_EO() const
 void Image::set_EO(const std::shared_ptr<ExteriorOrientation> &_EO)
 {
     Image::_EO = _EO;
-}
-
-Image::Image(int _height, int _width, const std::string &_fileName, const std::shared_ptr<InteriorOrientation> &_IO,
-             const std::shared_ptr<ExteriorOrientation> &_EO) : _height(_height), _width(_width), _fileName(_fileName),
-                                                                _IO(_IO), _EO(_EO)
-{
-
-
 }
 
 bool Image::backProject(const vector& worldCoordinate, Point &imageCoordinate)
@@ -89,7 +92,7 @@ bool Image::backProject(const vector& worldCoordinate, Point &imageCoordinate)
     //The camera matrix, it is populated with Interior Orientation information; focal length and principal point.
     matrix k = {{f, 0, pp.x},
                 {0, f, pp.y},
-                {0, 0, 0}};
+                {0, 0, 1}};
 
     printMatrix(k);
 
