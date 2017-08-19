@@ -9,27 +9,13 @@
 void testCallToBackProject()
 {
 
-
-    std::shared_ptr<InteriorOrientation> IO (new InteriorOrientation);
-    std::shared_ptr<ExteriorOrientation> EO(new ExteriorOrientation);
-
-#warning; please create output method that prints all image information; there appears to be something wrong potentially with the created data..
     auto images = ReadImageCsv("dummy.csv"); //vector of shared ptr of images.
-    std::cout << "warning: values may not have been correctly read." << std::endl;
 
-/*    IO->set_focalLength(233);
-    IO->set_principalPoint(Point(255,240));
+    std::cout << "Performing backprojection.." << "\n" << *(images[0]) << std::endl;
 
-    vector translation  {200,300,500};
-    EO->set_translation(translation);
-    vector rotation{20,10,100};
-    EO->set_rotation(rotation);
+    vector coordinate = {0,0,0};    //Coordinate to backproject
+    Point row_column;               //Result variable
 
-    Image image(400,600,"testImage",IO,EO);*/
-
-
-    vector coordinate = {0,0,0};
-    Point row_column(0,0);
     bool inside = images[0]->backProject(coordinate,row_column);
 
     std::string result = inside ? "inside the image" :  "sadly, not located in the image!";
@@ -91,36 +77,6 @@ int main()
             break;
 
     }
-
-
-
-    //Note: below is some example code, we should replace this by the menu structure that allows user input
-    //e.g. print list of choices with numbers, and after entering number, go to corresponding input/output
-
-    double identity[3][3] = {{1, 0, 0},
-                            {0, 1, 0},
-                            {0, 0, 1}};
-
-
-//    matrix identityMatrix = arrayToMatrix(identity);
-//    printMatrix(identityMatrix);
-
-    //Todo just allocate, it is silly to crerate a completely filled array.
-    double cr[3][3] = {{0, 0, 0},
-                       {0, 0, 0},
-                       {0, 0, 0}};
-
-    matrix a = {{1,4},
-                {2,5},
-                {3,6}};
-
-    //arrayToMatrix(ar);
-    matrix b = {{7, 8, 9}
-               ,{10, 11, 12}};
-
-    matrix c = multiply(a,b);
-
-    printMatrix(obj_points);
 
     return 0;
 }

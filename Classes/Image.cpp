@@ -5,7 +5,7 @@
 #include <math.h>
 #include "Image.h"
 #include "../util.h"
-
+#include <iomanip>
 
 //constructors
 Image::Image()
@@ -153,3 +153,49 @@ bool Image::backProject(const vector& worldCoordinate, Point &imageCoordinate)
             imageCoordinate.y < this->_height && imageCoordinate.y > 0;
 }
 
+
+std::_Setw indent(int level)
+{
+    const int indentSize = 8;
+    return std::setw(level*indentSize);
+}
+
+/*template<class Tvalue>
+std::ostream formatProperty(std::ostream &stream,const std::string& property,Tvalue value)
+{
+    stream << "filename" << indent(1) << value << "\n";
+    return stream;
+}*/
+
+std::ostream& operator<<(std::ostream& stream, const Image& image) {
+    stream << "Image" << "\n";
+    stream << indent(1) <<  "filename" << indent(1) << image.get_fileName() << "\n";
+    stream << indent(1) <<  "width" << indent(1) << image.get_width()<< "\n";
+    stream << indent(1) <<  "height" << indent(1) << image.get_height() << "\n";
+
+
+    stream << "\n";
+    stream << indent(1) <<  "Interior Orientation" << "\n";
+    stream << indent(2) <<  "focal length" << indent(1) << image.get_IO()->get_focalLength()   << "\n";
+    stream << indent(2) <<  "Principal Point" << "\n";
+
+    Point pp = image.get_IO()->get_principalPoint();
+    stream << indent(3) <<  "x" << indent(1) << pp.x  << "\n";
+    stream << indent(3) <<  "y" << indent(1) << pp.y << "\n";
+
+    stream << "\n";
+    stream << indent(1) <<  "Exterior Orientation" << "\n";
+    vector rotation = image.get_EO()->get_rotation();
+    stream << indent(2) <<  "rotation"   << "\n";
+    stream << indent(3) <<  "x" << indent(1) << rotation[0]  << "\n";
+    stream << indent(3) <<  "y" << indent(1) << rotation[1]  << "\n";
+    stream << indent(3) <<  "z" << indent(1) << rotation[2]  << "\n";
+
+    vector translation = image.get_EO()->get_translation();
+    stream << indent(2) <<  "translation"   << "\n";
+    stream << indent(3) <<  "x" << indent(1) << translation[0]  << "\n";
+    stream << indent(3) <<  "y" << indent(1) << translation[1]  << "\n";
+    stream << indent(3) <<  "z" << indent(1) << translation[2]  << "\n";
+
+    return stream;
+}

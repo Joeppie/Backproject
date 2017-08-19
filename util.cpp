@@ -5,6 +5,7 @@
 
 #include "util.h"
 #include <stdexcept>
+#include <iomanip>
 
 matrix multiply(const matrix &a,const matrix &b) {
 
@@ -70,14 +71,32 @@ matrix concatenate(const matrix &a,const matrix &b)
 
 void printMatrix(const matrix& matrix)
 {
+    if(matrix.size() == 0 ||  matrix[0].size() == 0)
+    {
+        std::cout << "{empty matrix}" << std::endl;
+        return;
+    }
+
+    const int seperatorwidth = 1;
+    const int columnwidth = 10;
+    const int barLength = columnwidth * matrix[0].size() +
+                            seperatorwidth * (matrix[0].size()+3);
+
+
     for(const auto &row : matrix)
     {
+        std::cout << std::string(barLength,'-') << "\n"; //Seperator between rows or begin.
+        std::cout << "|"; //begin of row
         for(const auto &value : row)
         {
-            std::cout << " " << value;
+            std::cout << " " << std::setw(columnwidth) << std::setprecision(3) << std::fixed << value;
+            std::cout << "|"; //seperator or end of row.
         }
-        std::cout << std::endl;
+        std::cout << "\n";
     }
+    std::cout << std::string(barLength,'-') << std::endl;
+
+
 }
 
 

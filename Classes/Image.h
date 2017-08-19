@@ -4,15 +4,16 @@
 
 #ifndef BACKPROJECT_IMAGE_H
 #define BACKPROJECT_IMAGE_H
+
 #include <memory>
+#include <iostream>
 
 #include "../util.h"
 #include "InteriorOrientation.h"
 #include "ExteriorOrientation.h"
 
 
-class Image
-{
+class Image {
 private:
     int _height;
     int _width;
@@ -21,26 +22,30 @@ private:
 private:
 
 public:
+
+    Image(int _height, int _width, const std::string &_fileName, const std::shared_ptr<InteriorOrientation> &_IO,
+          const std::shared_ptr<ExteriorOrientation> &_EO);
+
+    Image();
+
+
+    bool backProject(const vector &worldCoordinate, Point &imageCoordinate);
+
+
+    //Getters and setters
+
+    /**
+     *
+     * @param _height sets the height of the image.
+     **/
+    void set_height(int _height);
+
     /**
      *
      * @return the height of the image
      */
     int get_height() const;
 
-    Image(int _height, int _width, const std::string &_fileName, const std::shared_ptr<InteriorOrientation> &_IO,
-          const std::shared_ptr<ExteriorOrientation> &_EO);
-    Image();
-
-
-    bool backProject(const vector& worldCoordinate,Point &imageCoordinate);
-
-
-    //Getters and setters
-    /**
-     *
-     * @param _height sets the height of the image.
-     **/
-    void set_height(int _height);
 
     int get_width() const;
 
@@ -58,11 +63,16 @@ public:
 
     void set_EO(const std::shared_ptr<ExteriorOrientation> &_EO);
 
+//    void output(std::ostream &stream);
+
 private:
     std::shared_ptr<InteriorOrientation> _IO;
     std::shared_ptr<ExteriorOrientation> _EO;
 
 };
+
+std::ostream& operator<<(std::ostream& stream, const Image& image);
+
 
 
 #endif //BACKPROJECT_IMAGE_H
