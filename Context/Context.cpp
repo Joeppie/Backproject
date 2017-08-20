@@ -18,6 +18,6 @@ std::ostream &operator<<(std::ostream &os, const Context &context) {
     return os;
 }
 
-static void Context::registerOperation(ContextOperationBase operation) {
+static void Context::registerOperation(ContextOperationBase& operation) {
 
 }

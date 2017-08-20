@@ -5,9 +5,8 @@
 
 template <class T>
 ContextOperation<T>::ContextOperation() {
-    reg;  //force specialization
+    reg; //forces specialization.
 }
-
 
 
 template <class T>

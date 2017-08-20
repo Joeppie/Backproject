@@ -9,13 +9,12 @@
 #include <vector>
 #include <ostream>
 #include "Image.h"
-#include "Operations/ContextOperation.h"
 #include "Operations/ContextOperationBase.h"
 
 
 //Forward declaration: the two H files need eachother.
 template<class T>  class ContextOperation;
-
+class ContextOperationBase;
 
 
 /**
@@ -31,7 +30,7 @@ public:
 
     Context();
 
-    static void registerOperation(ContextOperationBase operation);
+    static void registerOperation(ContextOperationBase& operation);
 
     //TODO: fix it so that a list of the operations can be made and printed to cout.
     //the above shoudl lead to an extensible menu structure; of course, only print oeprations that report

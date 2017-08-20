@@ -21,30 +21,16 @@ class Context;
 template<class T>  class ContextOperation : public ContextOperationBase {
 
 protected:
-    ContextOperation();
-    static bool reg; //Registration object which places the object into the Context static list of properties.
+    ContextOperation<T>();
     static bool init();
 
 public:
-    /**
-     * Returns whether the operation is possible given the current state of the context
-     * @param context the context
-     * @return true when the operation is possible.
-     */
+    static bool reg; //Registration object which places the object into the Context static list of properties.
+
+    //Members from base
     virtual bool IsPossible(const Context &context) const =0;
-
-    /**
-     *
-     * @return a short description of the operation.
-     */
     virtual std::string getDescription() const =0;
-
-    /**
-     * Performs the operation on the context, thereby modifying it.
-     * @param context
-     * @return a string that reports the result of the operation; may be empty.
-     */
-    virtual std::string Perform(Context &context) =0;
+    virtual std::string Perform(Context &context) const=0;
 
 };
 

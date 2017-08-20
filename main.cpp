@@ -2,7 +2,10 @@
 #include <memory>
 #include "util.h"
 #include "ReadCSV.h"
+
+#include "Context/Context.h"
 #include "Context/Operations/ContextOperation.h"
+#include "Context/Operations/LoadImagesFromCsv.h"
 
 void testCallToBackProject()
 {
@@ -26,7 +29,12 @@ void testCallToBackProject()
 int main()
 {
 
+    Context context;
+
+    std::cout << "context has " << context.operations.size() << "operations available." << std::endl;
     std::vector<std::shared_ptr<ContextOperationBase>> operations;
+
+    LoadImagesFromCsv loadImageOperation;
 
     int h;
     matrix obj_points; //Matrix containing the object points

@@ -11,28 +11,6 @@
 
 class LoadImagesFromCSV : public ContextOperation<LoadImagesFromCSV> {
 
-public:
-    virtual bool IsPossible(const Context& context) const {
-        return true; //The more, the merrier.
-    }
-
-    virtual std::string Description() const {
-        return "Load image metadata from CSV";
-    }
-
- virtual std::string Perform(Context &context) {
-        try {
-            std::string fileName;
-
-            std::cout << "please enter the full filename of the csv containing the complete image metadata" << std::endl;
-            std::cin >> fileName;
-            context.Images = ReadImageCsv(fileName);
-        }
-        catch(const std::exception &exception){
-            std::cout << "An error was encountered loading the images." << std::endl;
-
-        }
-    }
 };
 
 
