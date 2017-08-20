@@ -20,9 +20,7 @@ void testCallToBackProject()
     bool inside = images[0]->backProject(coordinate,row_column);
 
     std::string result = inside ? "inside the image" :  "sadly, not located in the image!";
-
     std::cout << "the point was " << result << std::endl;
-
 }
 
 
@@ -30,11 +28,13 @@ int main()
 {
 
     Context context;
+    LoadImagesFromCsv loadImageOperation;
 
     std::cout << "context has " << context.operations.size() << "operations available." << std::endl;
     std::vector<std::shared_ptr<ContextOperationBase>> operations;
 
-    LoadImagesFromCsv loadImageOperation;
+
+    std::cout << loadImageOperation.getDescription() << std::endl;
 
     int h;
     matrix obj_points; //Matrix containing the object points

@@ -3,14 +3,14 @@
 //
 #include "ContextOperation.h"
 
-template <class T>
-ContextOperation<T>::ContextOperation() {
-    reg; //forces specialization.
-}
+
+class wrong;
+
+
 
 
 template <class T>
-static bool ContextOperation<T> ::init() {
+ bool ContextOperation<T> ::init() {
         T t;
         Context::registerOperation(t);
         return true;
