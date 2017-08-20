@@ -8,10 +8,17 @@
 
 #include "../Context.h"
 
+
+//forward declaration
+class Context;
+
 /**
  * Represents an operation that can be performed based on the 'Context'
  */
 class ContextOperation {
+
+protected:
+    ContextOperation();
 
 public:
     /**
@@ -20,6 +27,12 @@ public:
      * @return true when the operation is possible.
      */
     virtual bool IsPossible(const Context &context) const =0;
+
+    /**
+     *
+     * @return a short description of the operation.
+     */
+    virtual std::string getDescription() const =0;
 
     /**
      * Performs the operation on the context, thereby modifying it.

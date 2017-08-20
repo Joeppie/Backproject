@@ -16,6 +16,10 @@ public:
         return true; //The more, the merrier.
     }
 
+    virtual std::string Description() const {
+        return "Load image metadata from CSV";
+    }
+
  virtual std::string Perform(Context &context) {
         try {
             std::string fileName;
@@ -29,7 +33,7 @@ public:
 
         }
     }
-}r;
+};
 
 
 #endif //BACKPROJECT_LOADIMAGESFROMCSV_H
