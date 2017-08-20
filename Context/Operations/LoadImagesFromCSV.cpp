@@ -5,11 +5,11 @@
 #ifndef BACKPROJECT_LOADIMAGESFROMCSV_H
 #define BACKPROJECT_LOADIMAGESFROMCSV_H
 
-
+#include <vector>
 #include "ContextOperation.h"
-#include "../../../ReadCSV.h"
+#include "../../ReadCSV.h"
 
-class LoadImagesFromCSV : public ContextOperation {
+class LoadImagesFromCSV : public ContextOperation<LoadImagesFromCSV> {
 
 public:
     virtual bool IsPossible(const Context& context) const {
