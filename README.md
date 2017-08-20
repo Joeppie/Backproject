@@ -2,7 +2,15 @@
 
 This is a simple project which implements a backprojection of world-space coordinates into the 2d pixel coordinates of an image.
 
+# Building
 To build, run cmake on the root folder.
+
+The code should compile on Linux and Windows.
+
+You can use the git-clone command to check out the project to a local folder.
+Afterward, run cmake and then make.
+
+Users of the clion IDE can also import the code from the folder to whence Backproject was cloned.
 
 # Third party-code
 
