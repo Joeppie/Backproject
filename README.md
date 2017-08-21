@@ -34,7 +34,7 @@ The following packages are are required to be installed to build 64 bit:
  
 #code structure
 
-![Class Diagram SVG](https://raw.githubusercontent.com/joeppie/Backproject/master/Class%20Diagram.svg)
+![Class Diagram SVG](https://github.com/Joeppie/Backproject/blob/master/Class%20Diagram.svg)
 
 # Third party-code
 
