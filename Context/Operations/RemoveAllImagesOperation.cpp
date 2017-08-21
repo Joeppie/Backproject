@@ -11,7 +11,7 @@ bool RemoveAllImagesOperation::IsPossible(const Context &context) const
 std::string RemoveAllImagesOperation::getDescription() const
 {
 
-    return "Remove all images from context.";
+    return "remove all images from context";
 }
 
 std::string RemoveAllImagesOperation::Perform(Context &context) const

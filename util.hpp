@@ -21,6 +21,7 @@ T ReadAndValidate()
         std::cin.ignore(1000, '\n'); //throw away 1000 chars, or next end of line
         std::cout << "\nincorrect value, please enter correct value\n>";
         std::cin >> n;
+        std::cin.ignore(1000, '\n'); //throw away 1000 chars, or next end of line
     }
     return n;
 }

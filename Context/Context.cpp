@@ -9,23 +9,23 @@ std::vector<std::shared_ptr<ContextOperation>> Context::operations;
 std::ostream &operator<<(std::ostream &os, const Context &context)
 {
     //Output the pertinent information of the context to the stream.
-    os << "BackProjection Context Object\n";
+    os << "Back projection Context Object\n";
 
-    os << std::setw(4) << context.listImages().size() << " images { ";
+    os << std::setw(4) << context.listImages().size() << "    images { ";
     for (auto image : context.listImages())
     {
         os << image->get_fileName() << " ";
     }
     os << "}\n";
 
-    os << std::setw(4) << context.listPoints().size() << " points { ";
+    os << std::setw(4) << context.listPoints().size() << "    points { ";
     for (auto point : context.listPoints())
     {
         os << "{" << point[0] << "," << point[1] << "," << point[2] << "} ";
     }
     os << "}\n";
 
-    os << context.listOperations().size() << " operations available.";
+    os << context.listOperations().size() << "    operations available.";
 
     return os;
 }
@@ -66,7 +66,7 @@ void Context::Enter(std::ostream &os, std::istream &is)
     {
         sleep(2);
         clearScreen();
-        os << *this << "\n";
+        os << *this << "\n\n";
         int index = 1;
         for (std::shared_ptr<ContextOperation> operation : this->listOperations())
         {

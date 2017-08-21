@@ -16,5 +16,5 @@ bool RemoveImageOperation::IsPossible(const Context &context) const
 
 std::string RemoveImageOperation::getDescription() const
 {
-    return "Removes a specific image from the context.";
+    return "remove a specific image from the context.";
 }
