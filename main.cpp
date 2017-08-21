@@ -14,13 +14,15 @@ void testCallToBackProject()
 
     std::cout << "Performing backprojection.." << "\n" << *(images[0]) << std::endl;
 
-    vector coordinate = {0,0,0};    //Coordinate to backproject
+    vector coordinate = {91564.54, 438048.29, -8.73};    //Coordinate to backproject
     Point row_column;               //Result variable
 
     bool inside = images[0]->backProject(coordinate,row_column);
 
     std::string result = inside ? "inside the image" :  "sadly, not located in the image!";
     std::cout << "the point was " << result << std::endl;
+
+
 }
 
 

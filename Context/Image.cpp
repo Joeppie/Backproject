@@ -96,49 +96,71 @@ bool Image::backProject(const vector& worldCoordinate, Point &imageCoordinate)
 
     printMatrix(k);
 
-    //This matrix is used to help create a transposed matrix.
-    matrix rTranspose = {{1, 0,           0},
-                         {0, cos(M_PI_2), -sin(M_PI_2)},
-                         {0, sin(M_PI_2), cos(M_PI_2)}};
+    //Rotate camera properly into world frame
 
-    printMatrix(rTranspose);
+    const double deg_to_rad = M_PI/180.0;
 
-    //projection matrix is defined as P=K*[Rtranspose*RM -(Rtranspose*RM)*C];
-    //The code below implements this.
+    double pitch2 = 180*deg_to_rad;
+    double yaw2 = 90*deg_to_rad;
+    double roll2 = 0*deg_to_rad;
 
-    matrix rTranspose_X_Rm = multiply(rTranspose, transformation);
+//Assemble outer rotation matrix
 
-    printMatrix(rTranspose_X_Rm);
+    const matrix rotationY2 = {{cos(pitch2)      ,0  ,sin(pitch2)},
+                              {0           ,1  ,0},
+                              {-sin(pitch2)     ,0  ,cos(pitch2)}};
 
-    //Create the negative version of the Rtranspose*RM matrix for second part of operation.
-    matrix irTranspose = negate(rTranspose);
+    const matrix rotationX2 = {{1     ,0       ,0},
+                              {0     ,cos(roll2)  ,-sin(roll2)},
+                              {0     ,sin(roll2)  ,cos(roll2) }};
 
-    printMatrix(irTranspose);
+    const matrix rotationZ2 = {{cos(yaw2)      ,-sin(yaw2) ,0},
+                              {sin(yaw2)      ,cos(yaw2)  ,0},
+                              {0              ,0          ,1}};
 
-    //Todo: In matlab we would use world coordinates as a column vector, so that we can multiply it, in our C++ code, use a 1x3 matrix.
+
+
+    matrix RMtemp = multiply(multiply(rotationX2,rotationY2),rotationZ2);
+    matrix RM = multiply(transformation, RMtemp);
+
+
+
+    //Compute transpose - can be copied into util.cpp later
+
+    matrix RMt (3,vector(3));
+
+    for(int i = 0; i < 3; ++i)
+        for(int j = 0; j < 3; ++j)
+        {
+            RMt[j][i]=RM[i][j];
+        }
+
+
+
+    //Relate translation component to world frame
 
     vector translation = this->_EO->get_translation();
     matrix columnVectorTranslation = {{translation[0]},
                                       {translation[1]},
                                       {translation[2]}};
 
-    matrix minus_RTranspose_x_RM_x_C = multiply(irTranspose, columnVectorTranslation);
+    matrix RMtn = negate(RMt);
+    matrix tR = multiply(RMtn,columnVectorTranslation);
+    printMatrix(tR);
 
-    printMatrix(minus_RTranspose_x_RM_x_C);
+    //Concatenate rotation and translation elements
 
-    //Finally, we horizontally concatenate the two matrices: Rtranspose*RM and -(Rtranspose*RM)*C; that is to say; we add the fourth column to the first mentioned matrix.
-    matrix K_x_Rtranspose_RM_concatenatedwith_iRtranspose_RM_x_C = concatenate(rTranspose_X_Rm,
-                                                                               minus_RTranspose_x_RM_x_C);
+    matrix Rt = concatenate(RMt, tR);
+    printMatrix(Rt);
 
-    printMatrix(K_x_Rtranspose_RM_concatenatedwith_iRtranspose_RM_x_C);
+    //Compute Projection matrix
 
-    matrix P = multiply(k, K_x_Rtranspose_RM_concatenatedwith_iRtranspose_RM_x_C);
-    /*
-     * Matlab:
-        x = P*X;
-        xNorm(1,1)= x(1,1)/x(3,1);
-        xNorm(2,1)= x(2,1)/x(3,1);
-     */
+    matrix P = multiply(k, Rt);
+
+    printMatrix(P);
+
+
+//Return image coordinates from object point
 
     matrix x = multiply(P, X);
 
@@ -146,6 +168,9 @@ bool Image::backProject(const vector& worldCoordinate, Point &imageCoordinate)
 
     imageCoordinate.x = x[0][0] / x[2][0];
     imageCoordinate.y = x[1][0] / x[2][0];
+
+    std::cout <<  imageCoordinate.x << std::endl;
+    std::cout <<  imageCoordinate.y << std::endl;
 
     //Return true when the image row-column coordinate calculated lies within the image.
     return
@@ -199,3 +224,46 @@ std::ostream& operator<<(std::ostream& stream, const Image& image) {
 
     return stream;
 }
+
+//Old code from getimagecoordinates.m
+/*
+    //This matrix is used to help create a transposed matrix.
+    matrix rTranspose = {{1, 0,           0},
+                         {0, cos(M_PI_2), -sin(M_PI_2)},
+                         {0, sin(M_PI_2), cos(M_PI_2)}};
+
+    printMatrix(rTranspose);
+
+    //projection matrix is defined as P=K*[Rtranspose*RM -(Rtranspose*RM)*C];
+    //The code below implements this.
+
+    matrix rTranspose_X_Rm = multiply(rTranspose, transformation);
+
+    printMatrix(rTranspose_X_Rm);
+
+    //Create the negative version of the Rtranspose*RM matrix for second part of operation.
+    matrix irTranspose = negate(rTranspose);
+
+    printMatrix(irTranspose);
+
+    //Todo: In matlab we would use world coordinates as a column vector, so that we can multiply it, in our C++ code, use a 1x3 matrix.
+
+
+
+    matrix minus_RTranspose_x_RM_x_C = multiply(irTranspose, columnVectorTranslation);
+
+    printMatrix(minus_RTranspose_x_RM_x_C);
+
+    //Finally, we horizontally concatenate the two matrices: Rtranspose*RM and -(Rtranspose*RM)*C; that is to say; we add the fourth column to the first mentioned matrix.
+    matrix K_x_Rtranspose_RM_concatenatedwith_iRtranspose_RM_x_C = concatenate(rTranspose_X_Rm,
+                                                                               minus_RTranspose_x_RM_x_C);
+
+    printMatrix(K_x_Rtranspose_RM_concatenatedwith_iRtranspose_RM_x_C);
+
+    matrix P = multiply(k, K_x_Rtranspose_RM_concatenatedwith_iRtranspose_RM_x_C);
+    /*
+     * Matlab:
+        x = P*X;
+        xNorm(1,1)= x(1,1)/x(3,1);
+        xNorm(2,1)= x(2,1)/x(3,1);
+     */
