@@ -1,16 +1,35 @@
 # Backproject
 
-This is a simple project which implements a backprojection of world-space coordinates into the 2d pixel coordinates of an image.
+This is a simple project which, using some [photogammetry](https://en.wikipedia.org/wiki/Photogrammetry), implements a backprojection of world-space coordinates into the 2d pixel coordinates of an image.
+
+
 
 # Building
-To build, run cmake on the root folder.
-
-The code should compile on Linux and Windows (using minGW on windows; msys2 is a good option)
-
 You can use the git-clone command to check out the project to a local folder.
-Afterward, run cmake and then make.
 
-Users of the clion IDE can also import the code from the folder to whence Backproject was cloned.
+To build, run cmake on the source folder.
+
+The code should compile on Linux, or minGW, it requires pthread and cmake.
+ 
+ You may first need to install pthread via the package manager of your distro.
+#### Msys2/windows
+Under windows, the code can be compiled under minGW, it has been tested using [msys2](http://www.msys2.org/).
+
+
+The following packages are are required to be installed to build 64 bit:
+
+    pacman -Ss mingw-w64-x86_64-gcc
+    pacman -Ss mingw-w64-x86_64-gcc-libs
+    pacman -Ss mingw-w64-x86_64-gcc-libgfortran
+    pacman -Ss mingw-w64-x86_64-gdb
+    pacman -Ss mingw-w64-x86_64-make
+    pacman -Ss mingw-w64-x86_64-libwinpthread-git
+    pacman -Ss mingw-w64-x86_64-winpthreads-git
+    pacman -Ss mingw-w64-x86_64-cmake
+
+
+#### Linux
+ git clone the repo, then use cmake to build the solution. 
 
 # Third party-code
 
