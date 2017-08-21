@@ -1,6 +1,4 @@
-//
-// Created by LijnenJJ on 21-8-2017.
-//
+
 
 #include "BackProjectAllPointsOperation.h"
 #include "../Context.h"
@@ -15,7 +13,7 @@ bool BackProjectAllPointsOperation::IsPossible(const Context &context) const
 
 std::string BackProjectAllPointsOperation::getDescription() const
 {
-    return "Back-project all 3d points into images";
+    return "back-project all 3d points into images";
 }
 
 std::string BackProjectAllPointsOperation::Perform(Context &context) const

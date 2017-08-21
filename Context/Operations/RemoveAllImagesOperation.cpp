@@ -1,6 +1,4 @@
-//
-// Created by LijnenJJ on 21-8-2017.
-//
+
 
 #include "RemoveAllImagesOperation.h"
 

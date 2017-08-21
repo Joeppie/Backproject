@@ -1,6 +1,3 @@
-//
-// Created by root on 8/19/17.
-//
 
 #include <limits>
 #include "Context.h"

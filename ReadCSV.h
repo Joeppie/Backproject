@@ -1,6 +1,3 @@
-//
-// Created by Joep on 18-8-2017.
-//
 
 #ifndef BACKPROJECT_READCSV_H
 #define BACKPROJECT_READCSV_H

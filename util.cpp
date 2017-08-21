@@ -1,7 +1,3 @@
-//
-// Created by Joep on 18-8-2017.
-//
-
 
 #include "util.h"
 #include <stdexcept>

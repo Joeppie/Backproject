@@ -1,7 +1,3 @@
-//
-// Created by LijnenJJ on 16-8-2017.
-//
-
 #include <math.h>
 #include "Image.h"
 #include "../util.h"

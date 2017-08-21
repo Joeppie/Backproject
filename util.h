@@ -1,6 +1,4 @@
-//
-// Created by LijnenJJ on 16-8-2017.
-//
+
 #include <chrono>
 #include <thread>
 #ifndef BACKPROJECT_UTIL_H

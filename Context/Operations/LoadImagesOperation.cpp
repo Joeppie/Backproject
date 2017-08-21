@@ -1,6 +1,4 @@
-//
-// Created by joep on 8/20/17.
-//
+
 #include <sstream>
 
 #include "LoadImagesOperation.h"
@@ -14,7 +12,7 @@ std::string LoadImagesOperation::Perform(Context &context) const
     {
         std::string fileName;
 
-        std::cout << "please enter the full filename of the csv containing the complete image metadata \n>";
+        std::cout << "please enter the full filename of the csv containing the complete image metadata (hint: images.csv is an existing file)\n>";
         std::cout.flush();
         std::cin >> fileName;
         auto images = ReadImageCsv(fileName);
@@ -44,5 +42,5 @@ bool LoadImagesOperation::IsPossible(const Context &context) const
 
 std::string LoadImagesOperation::getDescription() const
 {
-    return "Load images from specific CSV file";
+    return "load images from specific CSV file";
 }

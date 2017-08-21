@@ -1,6 +1,3 @@
-//
-// Created by LijnenJJ on 21-8-2017.
-//
 
 #ifndef BACKPROJECT_REMOVEALLPOINTS_H
 #define BACKPROJECT_REMOVEALLPOINTS_H

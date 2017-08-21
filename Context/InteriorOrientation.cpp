@@ -1,6 +1,3 @@
-//
-// Created by LijnenJJ on 16-8-2017.
-//
 
 #include "InteriorOrientation.h"
 

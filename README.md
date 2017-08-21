@@ -16,3 +16,6 @@ Users of the clion IDE can also import the code from the folder to whence Backpr
 
 We use a CSV reading library written by Ben Strasser; https://github.com/ben-strasser/fast-cpp-csv-parser
 This pertains to https://github.com/Joeppie/Backproject/blob/master/thirdparty/csv.h
+
+Copyright: (2012-2015) Ben Strasser <code@ben-strasser.net>
+License: BSD-3

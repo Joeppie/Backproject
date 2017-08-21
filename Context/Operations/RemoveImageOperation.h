@@ -1,6 +1,3 @@
-//
-// Created by Joep on 21-8-2017.
-//
 
 #ifndef BACKPROJECT_REMOVEIMAGE_H
 #define BACKPROJECT_REMOVEIMAGE_H

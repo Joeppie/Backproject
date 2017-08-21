@@ -1,6 +1,3 @@
-//
-// Created by root on 8/19/17.
-//
 
 #ifndef BACKPROJECT_CONTEXT_H
 #define BACKPROJECT_CONTEXT_H

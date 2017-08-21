@@ -1,50 +1,31 @@
-//
-// Created by LijnenJJ on 16-8-2017.
-//
 
 #include <math.h>
 #include "ExteriorOrientation.h"
 
-/**
- *  Returns the rotation
- * @return rotation as a vector of doubles, containing rotations for respectively x,y,z
- */
+
 const std::vector<double> &ExteriorOrientation::get_rotation() const
 {
     return _rotation;
 }
 
-/**
- * sets the rotation
- * @param rotation rotation as a vector of doubles, containing rotation for respectively x,y,z
- */
+
 void ExteriorOrientation::set_rotation(const std::vector<double> &rotation)
 {
     ExteriorOrientation::_rotation = rotation;
 }
 
-/**
- * returns the translation
- * @return  translation as a vector of doubles, containing translation for respectively x,y,z
- */
+
 const std::vector<double> &ExteriorOrientation::get_translation() const
 {
     return _translation;
 }
 
-/**
- * sets the translation
- * @param _translation translation as a vector of doubles, containing translation for respectively x,y,z
- */
+
 void ExteriorOrientation::set_translation(const std::vector<double> &_translation)
 {
     ExteriorOrientation::_translation = _translation;
 }
 
-/**
- * Returns the rotation-matrix that is constructed by processing the rotation all three axes.
- * @return a matrix (std::vector<std::vector<double>>) that can be used in matrix-multiplication or vector-matrix multiplication
- */
 matrix ExteriorOrientation::get_transformation()
 {
     const double deg_to_rad = M_PI / 180.0;
@@ -57,7 +38,8 @@ matrix ExteriorOrientation::get_transformation()
     const double x = ExteriorOrientation::_rotation[0] * deg_to_rad * rotDir;
     const double z = ExteriorOrientation::_rotation[2] * deg_to_rad * rotDir;
 
-    /*rty=[cos(pitch*degtorad_i),0, sin(pitch*degtorad_i);
+    /* matlab code/comment:
+            rty=[cos(pitch*degtorad_i),0, sin(pitch*degtorad_i);
             0 , 1, 0;
             -sin(pitch*degtorad_i),0,cos(pitch*degtorad_i)];*/
 
@@ -68,7 +50,7 @@ matrix ExteriorOrientation::get_transformation()
                               {-sin(y), 0, cos(y)}};
 
 
-    /*
+    /* matlab code/comment:
     %Rotation x
     rtx=[1,0,0;
     0, cos(roll*degtorad_i),-sin(roll*degtorad_i);
@@ -80,8 +62,7 @@ matrix ExteriorOrientation::get_transformation()
                               {0, cos(x), -sin(x)},
                               {0, sin(x), cos(x)}};
 
-/*
-
+/*  matlab code/comment:
     rtz=[cos(yaw*degtorad_i),-sin(yaw*degtorad_i),0;
             sin(yaw*degtorad_i),cos(yaw*degtorad_i),0;
             0,0,1];

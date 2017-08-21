@@ -1,6 +1,4 @@
-//
-// Created by LijnenJJ on 16-8-2017.
-//
+
 
 #ifndef BACKPROJECT_IMAGE_H
 #define BACKPROJECT_IMAGE_H

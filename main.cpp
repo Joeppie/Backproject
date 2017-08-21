@@ -10,6 +10,7 @@
 #include "Context/Operations/RemoveAllPointsOperation.h"
 #include "Context/Operations/BackProjectAllPointsOperation.h"
 #include "Context/Operations/DisplayImageDetailsOperation.h"
+#include "Context/Operations/EnterPointsOperation.h"
 
 /**
  * Entry point of the program.
@@ -24,6 +25,7 @@ int main()
     //Register operations, so that they can be chosen in the menu, shown when in Context::Enter.
     Context::registerOperation(std::shared_ptr<ContextOperation>(new LoadImagesOperation));
     Context::registerOperation(std::shared_ptr<ContextOperation>(new LoadHardCodedPointsOperation));
+    Context::registerOperation(std::shared_ptr<ContextOperation>(new EnterPointsOperation));
     Context::registerOperation(std::shared_ptr<ContextOperation>(new BackProjectAllPointsOperation));
     Context::registerOperation(std::shared_ptr<ContextOperation>(new DisplayImageDetailsOperation));
     Context::registerOperation(std::shared_ptr<ContextOperation>(new RemoveImageOperation));

@@ -1,6 +1,4 @@
-//
-// Created by Joep on 21-8-2017.
-//
+
 
 #include "RemoveImageOperation.h"
 #include "..\..\util.h"

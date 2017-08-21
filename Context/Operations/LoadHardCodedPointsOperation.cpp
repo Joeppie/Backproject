@@ -1,6 +1,3 @@
-//
-// Created by LijnenJJ on 21-8-2017.
-//
 
 #include "LoadHardCodedPointsOperation.h"
 
@@ -23,11 +20,10 @@ std::string LoadHardCodedPointsOperation::Perform(Context &context) const
 
 bool LoadHardCodedPointsOperation::IsPossible(const Context &context) const
 {
-
     return true;
 }
 
 std::string LoadHardCodedPointsOperation::getDescription() const
 {
-    return "Load some hardcoded points";
+    return "load a hardcoded point that kinda works awesome together with images.csv";
 }

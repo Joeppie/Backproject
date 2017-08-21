@@ -1,6 +1,3 @@
-//
-// Created by Joep on 18-8-2017.
-//
 
 #include "ReadCSV.h"
 #include "thirdparty/csv.h"
