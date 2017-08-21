@@ -34,6 +34,8 @@ int main()
     //register the load images operation.
     Context::registerOperation(std::shared_ptr<ContextOperation>(new LoadImagesOperation));
 
+    context.Enter(std::cout,std::cin);
+
 
     std::cout << "context has " << context.listOperations().size() << "operations available." << std::endl;
 

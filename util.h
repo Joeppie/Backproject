@@ -60,5 +60,7 @@ matrix arrayToMatrix(const double (&jaggedArray)[size_x][size_y]);
 template<class T>
 T ReadAndValidate();
 
+#include "util.hpp"
+
 
 #endif //BACKPROJECT_UTIL_H

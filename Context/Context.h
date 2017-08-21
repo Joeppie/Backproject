@@ -43,6 +43,9 @@ public:
     //ispossible == true
     std::vector<std::shared_ptr<ContextOperation>>& listOperations() const;
     std::vector<std::shared_ptr<Image>> listImages();
+
+     void Enter (std::ostream &os, std::istream &is);
+
 };
 
 
