@@ -5,7 +5,7 @@ This is a simple project which implements a backprojection of world-space coordi
 # Building
 To build, run cmake on the root folder.
 
-The code should compile on Linux and Windows.
+The code should compile on Linux and Windows (using minGW on windows; msys2 is a good option)
 
 You can use the git-clone command to check out the project to a local folder.
 Afterward, run cmake and then make.

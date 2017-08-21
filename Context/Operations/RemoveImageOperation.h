@@ -8,11 +8,14 @@
 #include "ContextOperation.h"
 
 
-class RemoveImageOperation : ContextOperation {
+class RemoveImageOperation : public ContextOperation
+{
 
 public:
     virtual bool IsPossible(const Context &context) const;
+
     virtual std::string getDescription() const;
+
     virtual std::string Perform(Context &context) const;
 
 };

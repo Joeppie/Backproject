@@ -22,7 +22,7 @@ public:
 private:
     vector _translation;
 public:
-   const vector &get_rotation() const;
+    const vector &get_rotation() const;
 
     /**
      * Sets rotation, in degrees as a vector with 3 elements; x y z

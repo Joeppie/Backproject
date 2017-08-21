@@ -19,23 +19,24 @@ std::ostream &operator<<(std::ostream &os, const Context &context)
     //above will allow user to specify index+1 in input to indicate they want to run that operation.
 
     //Output a menu structure indicating the operations available.
-    int index = 1;
-    for (std::shared_ptr<ContextOperation> operation : context.listOperations())
+
+    os << "BackProjection Context Object\n";
+
+    os << context.listImages().size() << "images { ";
+    for (auto image : context.listImages())
     {
-        if (operation->IsPossible(context))
-        {
-            os << "[" << std::setw(3) << index << "]";
-        }
-        else
-        {
-            os << "*N/A*";
-        }
-
-        os << "   " << operation->getDescription() << "\n";
-        index++;
+        os << image->get_fileName() << " ";
     }
+    os << "}\n";
 
-    os << "[" << std::setw(3) << index << "]   Exit";
+    os << context.listImages().size() << "points { ";
+    for (auto point : context.listPoints())
+    {
+        os << "{" << point[0] << "," << point[1] << "," << point[2] << "} ";
+    }
+    os << "}\n";
+
+    os << context.listOperations().size() << " operations available.";
 
     return os;
 }
@@ -45,24 +46,58 @@ void Context::registerOperation(std::shared_ptr<ContextOperation> operation)
     operations.push_back(operation);
 }
 
-std::vector<std::shared_ptr<ContextOperation>> &Context::listOperations() const
+const std::vector<std::shared_ptr<ContextOperation>> &Context::listOperations() const
 {
     return Context::operations;
 }
 
-//TODO: something weird is going on; compile error occurs when trying to use const here, due to discarding of qualifier?
-std::vector<std::shared_ptr<Image>> Context::listImages()
+const std::vector<std::shared_ptr<Image>> Context::listImages() const
 {
     return this->Images;
 }
 
+const std::vector<std::vector<double>> Context::listPoints() const
+{
+    return this->Points;
+}
+
+void Context::addImage(const std::shared_ptr<Image> image)
+{
+
+    std::cout << *image << std::endl;
+    this->Images.push_back(image);
+}
+
+void Context::addPoint(const std::vector<double> point)
+{
+    this->Points.push_back(point);
+}
+
 void Context::Enter(std::ostream &os, std::istream &is)
 {
-    bool done = false;
-    while (!done)
+    for (;;)
     {
-        os << *this << std::endl;
-        int choice = ReadAndValidate<int>();
+        os << *this << "\n";
+        int index = 1;
+        for (std::shared_ptr<ContextOperation> operation : this->listOperations())
+        {
+            if (operation->IsPossible(*this))
+            {
+                os << "[" << std::setw(3) << index << "]";
+            }
+            else
+            {
+                os << "*N/A*";
+            }
+
+            os << "   " << operation->getDescription() << "\n";
+            index++;
+        }
+
+        os << "[" << std::setw(3) << index << "]   Exit\n\n";
+
+
+        unsigned int choice = ReadAndValidate<unsigned int>();
 
 
         //invalid choice, try again.
@@ -82,10 +117,19 @@ void Context::Enter(std::ostream &os, std::istream &is)
             {
                 os << operation->Perform(*this) << std::endl;
             }
+            else
+            {
+                os << "Sorry, is currently not possible to " << operation->getDescription() << "." << std::endl;
+            }
         }
 
     }
 
 
+}
+
+void Context::removeALlPoints()
+{
+    this->Points.clear();
 }
 

@@ -8,11 +8,14 @@
 #include <iostream>
 #include "ContextOperation.h"
 
-class LoadImagesOperation : public ContextOperation{
+class LoadImagesOperation : public ContextOperation
+{
 public:
 
     virtual bool IsPossible(const Context &context) const;
+
     virtual std::string getDescription() const;
+
     virtual std::string Perform(Context &context) const;
 
 };

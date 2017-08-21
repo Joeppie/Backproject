@@ -5,7 +5,7 @@
 #include <math.h>
 #include "ExteriorOrientation.h"
 
-const std::vector<double>& ExteriorOrientation::get_rotation() const
+const std::vector<double> &ExteriorOrientation::get_rotation() const
 {
     return _rotation;
 }
@@ -27,15 +27,15 @@ void ExteriorOrientation::set_translation(const std::vector<double> &_translatio
 
 matrix ExteriorOrientation::get_transformation()
 {
-    const double deg_to_rad = M_PI/180.0;
+    const double deg_to_rad = M_PI / 180.0;
 
     //Rotation direction
     int rotDir = -1;
 
     //Matrices for rotations around various axes
-    const double y = ExteriorOrientation::_rotation[1]*deg_to_rad*rotDir;
-    const double x = ExteriorOrientation::_rotation[0]*deg_to_rad*rotDir;
-    const double z = ExteriorOrientation::_rotation[2]*deg_to_rad*rotDir;
+    const double y = ExteriorOrientation::_rotation[1] * deg_to_rad * rotDir;
+    const double x = ExteriorOrientation::_rotation[0] * deg_to_rad * rotDir;
+    const double z = ExteriorOrientation::_rotation[2] * deg_to_rad * rotDir;
 
     /*rty=[cos(pitch*degtorad_i),0, sin(pitch*degtorad_i);
             0 , 1, 0;
@@ -43,9 +43,9 @@ matrix ExteriorOrientation::get_transformation()
 
 
 
-    const matrix rotationY = {{cos(y)      ,0  ,sin(y)},
-                        {0           ,1  ,0},
-                        {-sin(y)     ,0  ,cos(y)}};
+    const matrix rotationY = {{cos(y),  0, sin(y)},
+                              {0,       1, 0},
+                              {-sin(y), 0, cos(y)}};
 
 
     /*
@@ -56,9 +56,9 @@ matrix ExteriorOrientation::get_transformation()
     %Rotation z
     */
 
-    const matrix rotationX = {{1     ,0       ,0},
-                        {0     ,cos(x)  ,-sin(x)},
-                        {0     ,sin(x)  ,cos(x) }};
+    const matrix rotationX = {{1, 0,      0},
+                              {0, cos(x), -sin(x)},
+                              {0, sin(x), cos(x)}};
 
 /*
 
@@ -67,14 +67,14 @@ matrix ExteriorOrientation::get_transformation()
             0,0,1];
 
 */
-   const matrix rotationZ = {{cos(z)      ,-sin(z) ,0},
-                        {sin(z)      ,cos(z)  ,0},
-                        {0              ,0          ,1}};
+    const matrix rotationZ = {{cos(z), -sin(z), 0},
+                              {sin(z), cos(z),  0},
+                              {0,      0,       1}};
 
 
     //Finally:  RM=rty*rtx*rtz;
     //Implement the above as (y*x)*z, by using the matrix multiplication method... we should consider using a class with the * operator, for convenience
-    matrix RM = multiply(multiply(rotationX,rotationY),rotationZ);
+    matrix RM = multiply(multiply(rotationX, rotationY), rotationZ);
 
 
     return RM; //Rotation matrix.

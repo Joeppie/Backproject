@@ -14,6 +14,7 @@ struct Point
     double x;
 
     Point(double x, double y);
+
     Point();
 
     double y;
@@ -29,9 +30,9 @@ using vector = std::vector<double>;
  * @param a right-hand side matrix
  * @param b left-hand size matrix
  */
-matrix multiply(const matrix &a,const matrix &b);
+matrix multiply(const matrix &a, const matrix &b);
 
-void printMatrix(const matrix& matrix);
+void printMatrix(const matrix &matrix);
 
 
 /**
@@ -45,9 +46,9 @@ matrix negate(const matrix &a);
  * @param a original matrix
  * @param b matrix to concatenate with, number of rows must match A.
  */
-matrix concatenate(const matrix &a,const matrix &b);
+matrix concatenate(const matrix &a, const matrix &b);
 
-template <size_t size_x, size_t size_y>
+template<size_t size_x, size_t size_y>
 matrix arrayToMatrix(const double (&jaggedArray)[size_x][size_y]);
 
 /**

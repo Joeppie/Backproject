@@ -13,7 +13,8 @@
 #include "ExteriorOrientation.h"
 
 
-class Image {
+class Image
+{
 private:
     int _height;
     int _width;
@@ -71,8 +72,7 @@ private:
 
 };
 
-std::ostream& operator<<(std::ostream& stream, const Image& image);
-
+std::ostream &operator<<(std::ostream &stream, const Image &image);
 
 
 #endif //BACKPROJECT_IMAGE_H
