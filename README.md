@@ -11,7 +11,6 @@ To build, run cmake on the source folder.
 
 The code should compile on Linux, or minGW, it requires pthread and cmake.
  
- You may first need to install pthread via the package manager of your distro.
 #### Msys2/windows
 Under windows, the code can be compiled under minGW, it has been tested using [msys2](http://www.msys2.org/).
 
@@ -28,8 +27,10 @@ The following packages are are required to be installed to build 64 bit:
     pacman -Ss mingw-w64-x86_64-cmake
 
 
-#### Linux
+### Linux
  git clone the repo, then use cmake to build the solution. 
+ 
+ You may first need to install pthread via the package manager of your distribution.
 
 # Third party-code
 
