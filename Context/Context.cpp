@@ -6,21 +6,12 @@
 #include "Context.h"
 #include <iomanip>
 
-Context::Context()
-{
-
-}
-
-
 //Required to be initialized here, so that linker can make sense of this, when referenced in the ContextOperations.
 std::vector<std::shared_ptr<ContextOperation>> Context::operations;
 
 std::ostream &operator<<(std::ostream &os, const Context &context)
 {
-    //above will allow user to specify index+1 in input to indicate they want to run that operation.
-
-    //Output a menu structure indicating the operations available.
-
+    //Output the pertinent information of the context to the stream.
     os << "BackProjection Context Object\n";
 
     os << std::setw(4) << context.listImages().size() << " images { ";

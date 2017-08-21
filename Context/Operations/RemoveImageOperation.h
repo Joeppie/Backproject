@@ -7,7 +7,9 @@
 
 #include "ContextOperation.h"
 
-
+/**
+ * Removes one specific images from the context.
+ */
 class RemoveImageOperation : public ContextOperation
 {
 

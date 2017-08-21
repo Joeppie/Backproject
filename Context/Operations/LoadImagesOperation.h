@@ -8,6 +8,9 @@
 #include <iostream>
 #include "ContextOperation.h"
 
+/**
+ * Loads a set of images into the context by reading a CSV file.
+ */
 class LoadImagesOperation : public ContextOperation
 {
 public:

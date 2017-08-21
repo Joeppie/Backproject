@@ -16,19 +16,16 @@ class ExteriorOrientation
 {
 private:
     vector _rotation;
-public:
-    ExteriorOrientation();
-
-private:
     vector _translation;
 public:
     const vector &get_rotation() const;
 
     /**
      * Sets rotation, in degrees as a vector with 3 elements; x y z
-     * @param _rotation rotation vector, degrees
+     * @param rotation rotation vector, degrees
      */
-    void set_rotation(const vector &_rotation);
+    void set_rotation(const vector &rotation);
+
 
     const vector &get_translation() const;
 

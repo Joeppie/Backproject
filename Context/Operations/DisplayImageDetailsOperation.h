@@ -8,6 +8,9 @@
 
 #include "ContextOperation.h"
 
+/**
+ * This operation allows the user to inspect details regarding the images that are loaded into the context currently.
+ */
 class DisplayImageDetailsOperation : public ContextOperation
 {
 public:

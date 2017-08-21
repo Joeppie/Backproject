@@ -17,6 +17,7 @@ class Context;
 
 /**
  * Represents an operation that can be performed based on the 'Context'
+ * (This is an abstract class, it cannot be directly instantiated)
  */
 class ContextOperation
 {

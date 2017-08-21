@@ -1,5 +1,12 @@
 #include "util.h"
 
+/**
+ * This specification needs to be here, since templates are only genereated when 'compilation units' use them.
+ * To avoid problems, a .hpp is used which is treated as a source file and influces the header (and is included by header) to avoid
+ * conflicting or lacking implementations, which lead to very confusing errors.
+ * @tparam T the type of the value being read.
+ * @return the value that wa sread from the std::in stream.
+ */
 template<class T>
 T ReadAndValidate()
 {

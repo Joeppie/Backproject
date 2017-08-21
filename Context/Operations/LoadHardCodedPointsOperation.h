@@ -10,6 +10,9 @@
 #include "../Context.h"
 
 
+/**
+ * Loads a hardcoded set of points into a context.
+ */
 class LoadHardCodedPointsOperation : public ContextOperation
 {
 public:

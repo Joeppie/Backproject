@@ -23,6 +23,3 @@ void InteriorOrientation::set_principalPoint(Point _principalPoint)
 {
     InteriorOrientation::_principalPoint = _principalPoint;
 }
-
-InteriorOrientation::InteriorOrientation()
-{}

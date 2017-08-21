@@ -5,26 +5,46 @@
 #include <math.h>
 #include "ExteriorOrientation.h"
 
+/**
+ *  Returns the rotation
+ * @return rotation as a vector of doubles, containing rotations for respectively x,y,z
+ */
 const std::vector<double> &ExteriorOrientation::get_rotation() const
 {
     return _rotation;
 }
 
-void ExteriorOrientation::set_rotation(const std::vector<double> &_rotation)
+/**
+ * sets the rotation
+ * @param rotation rotation as a vector of doubles, containing rotation for respectively x,y,z
+ */
+void ExteriorOrientation::set_rotation(const std::vector<double> &rotation)
 {
-    ExteriorOrientation::_rotation = _rotation;
+    ExteriorOrientation::_rotation = rotation;
 }
 
+/**
+ * returns the translation
+ * @return  translation as a vector of doubles, containing translation for respectively x,y,z
+ */
 const std::vector<double> &ExteriorOrientation::get_translation() const
 {
     return _translation;
 }
 
+/**
+ * sets the translation
+ * @param _translation translation as a vector of doubles, containing translation for respectively x,y,z
+ */
 void ExteriorOrientation::set_translation(const std::vector<double> &_translation)
 {
     ExteriorOrientation::_translation = _translation;
 }
 
+/**
+ * Returns the rotation-matrix that is constructed by processing the rotation all three axes.
+ * @return a matrix (std::vector<std::vector<double>>) that can be used in matrix-multiplication or vector-matrix multiplication
+ */
 matrix ExteriorOrientation::get_transformation()
 {
     const double deg_to_rad = M_PI / 180.0;
@@ -79,6 +99,3 @@ matrix ExteriorOrientation::get_transformation()
 
     return RM; //Rotation matrix.
 }
-
-ExteriorOrientation::ExteriorOrientation()
-{}

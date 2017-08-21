@@ -8,6 +8,9 @@
 
 #include "ContextOperation.h"
 
+/**
+ * Removes all the images that a context has.
+ */
 class RemoveAllImagesOperation : public ContextOperation
 {
 public:

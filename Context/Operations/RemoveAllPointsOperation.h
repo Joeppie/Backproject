@@ -8,6 +8,9 @@
 
 #include "ContextOperation.h"
 
+/**
+ * An operation that removes all the points on a context.
+ */
 class RemoveAllPointsOperation : public ContextOperation
 {
     virtual bool IsPossible(const Context &context) const;

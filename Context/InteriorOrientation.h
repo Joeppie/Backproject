@@ -13,26 +13,36 @@
 class InteriorOrientation
 {
 public:
+    /**
+     * retrieves the focallength of the camera
+     * @return the focal length of the camera in millimeters
+     */
     double get_focalLength() const;
 
-    InteriorOrientation();
-
+/**
+ * sets the focal length of the camera
+ * @param _focalLength the focal length in millimeters.
+ */
     void set_focalLength(double _focalLength);
 
+    /**
+     * Retrieves the principal point of the image;
+     * (wikipedia: The principal point is the point on the image plane onto which the perspective center is projected.
+     * It is also the point from which the focal length of the lens is measured.)
+     * @return the principal point expressed in pixels, x and y respectively.
+     */
     Point get_principalPoint() const;
 
+    /**
+     * sets the principal point of the image
+     * @param _principalPoint
+     */
     void set_principalPoint(Point _principalPoint);
 
 private:
     double _focalLength;
     Point _principalPoint;
 
-public:
-/*    const double getFocalLength();
-    const double getPrincipalPoint();
-
-    void setFocalLength(const double &value);
-    void setPrincipalPoint(const double &value);*/
 };
 
 

@@ -19,20 +19,43 @@
 #include <iostream>
 #include <iomanip>
 
+/**
+ * Represents a 2 dimensional coordinate in an as yet unspecified unit (e.g. pixels or meters)
+ */
 struct Point
 {
+/**
+ * the x ordinate of the point
+ */
     double x;
+    /**
+     * the y ordinate of the point.
+     */
+    double y;
 
+    /**
+     * Creates an instance of a point assigning the x and y ordinates
+     * @param x the x ordinate
+     * @param y the y ordinate
+     */
     Point(double x, double y);
-
+    /**
+     * the default constructor, necessary since a non-default constructor has been specified; the compiler won't generate this by itself,
+     * and it would be very annoying if it were absent; since it would mean users would be forced to specify default values.
+     */
     Point();
 
-    double y;
+
 };
 
 
-//shorthand forms that are applicable to our application.
+/**
+ * represents a 2d matrix of double values using a std::vector<std::vector<double>>
+ */
 using matrix = std::vector<std::vector<double>>;
+/**
+ * represents a vector- or list- of double  values using a std::vector<double>
+ */
 using vector = std::vector<double>;
 
 /**
@@ -42,8 +65,11 @@ using vector = std::vector<double>;
  */
 matrix multiply(const matrix &a, const matrix &b);
 
+/**
+ * Pretty-prints a matrix to the screen
+ * @param matrix a matrix as represented by a std::vector<std::vector<double>>
+ */
 void printMatrix(const matrix &matrix);
-
 
 /**
  * swaps the sign on every value inside the matrix; e.g. a column with 1 becomes -1 and vice versa
@@ -85,7 +111,13 @@ void clearScreen();
  */
 void sleep(double seconds);
 
+/**
+ * Method which uses std::cout and std::cin to ask the user to press the enter key, returns immediately afterward.
+ */
 void PressEnterToContinue();
+/**
+ * Method which uses the specified input and output stream to ask the user to press the enter key, returns immediately afterward.
+ */
 void PressEnterToContinue(std::ostream &os,std::istream &is);
 
 #endif //BACKPROJECT_UTIL_H
