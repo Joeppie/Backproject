@@ -5,7 +5,7 @@
 #ifndef BACKPROJECT_CONTEXTOPERATION_H
 #define BACKPROJECT_CONTEXTOPERATION_H
 
-#include "ContextOperationBase.h"
+#include "ContextOperation.h"
 #include "../Context.h"
 
 
@@ -18,19 +18,12 @@ class Context;
 /**
  * Represents an operation that can be performed based on the 'Context'
  */
-template<class T>  class ContextOperation : public ContextOperationBase {
+class ContextOperation  {
 
 protected:
 
-    static bool init();
 
 public:
-    ContextOperation() {
-        reg; //forces specialization.
-    }
-
-    static bool reg; //Registration object which places the object into the Context static list of properties.
-    //Members from base
     virtual bool IsPossible(const Context &context) const =0;
     virtual std::string getDescription() const =0;
     virtual std::string Perform(Context &context) const=0;

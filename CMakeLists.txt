@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_FLAGS "-Wfatal-errors -fpermissive")
 
 
-set(SOURCE_FILES main.cpp thirdparty/csv.h Context/InteriorOrientation.cpp Context/InteriorOrientation.h Context/Image.cpp Context/Image.h Context/ExteriorOrientation.cpp Context/ExteriorOrientation.h util.h util.cpp ReadCSV.cpp ReadCSV.h Context/Context.cpp Context/Context.h Context/Operations/ContextOperation.h Context/Operations/LoadImagesFromCSV.cpp Context/Operations/ContextOperation.cpp Context/Operations/ContextOperationBase.cpp Context/Operations/ContextOperationBase.h Context/Operations/LoadImagesFromCsv.cpp Context/Operations/LoadImagesFromCsv.h)
+set(SOURCE_FILES main.cpp thirdparty/csv.h Context/InteriorOrientation.cpp Context/InteriorOrientation.h Context/Image.cpp Context/Image.h Context/ExteriorOrientation.cpp Context/ExteriorOrientation.h util.h util.cpp ReadCSV.cpp ReadCSV.h Context/Context.cpp Context/Context.h Context/Operations/ContextOperation.h Context/Operations/LoadImagesOperation.cpp Context/Operations/ContextOperation.cpp Context/Operations/LoadImagesOperation.cpp Context/Operations/LoadImagesOperation.h Context/Operations/RemoveImageOperation.cpp Context/Operations/RemoveImageOperation.h)
 add_executable(Backproject ${SOURCE_FILES})
 configure_file(dummy.csv dummy.csv COPYONLY)
 

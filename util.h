@@ -50,7 +50,15 @@ matrix concatenate(const matrix &a,const matrix &b);
 template <size_t size_x, size_t size_y>
 matrix arrayToMatrix(const double (&jaggedArray)[size_x][size_y]);
 
-
+/**
+ * Reads a value of class T, and then returns the result, forcing the user to enter a correct value.
+ * @tparam T
+ * @param prompt The initial prompt asking the user to enter a value via std::cout.
+ * @param tryAgain The message that shows when the user did not enter a valid value.
+ * @return a valid value of T.
+ */
+template<class T>
+T ReadAndValidate();
 
 
 #endif //BACKPROJECT_UTIL_H

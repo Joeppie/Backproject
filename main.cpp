@@ -5,7 +5,7 @@
 
 #include "Context/Context.h"
 #include "Context/Operations/ContextOperation.h"
-#include "Context/Operations/LoadImagesFromCsv.h"
+#include "Context/Operations/LoadImagesOperation.h"
 
 void testCallToBackProject()
 {
@@ -28,13 +28,13 @@ int main()
 {
 
     Context context;
-    LoadImagesFromCsv loadImageOperation;
 
-    std::cout << "context has " << context.operations.size() << "operations available." << std::endl;
-    std::vector<std::shared_ptr<ContextOperationBase>> operations;
+    //register the load images operation.
+    Context::registerOperation(std::shared_ptr<ContextOperation>(new LoadImagesOperation));
 
 
-    std::cout << loadImageOperation.getDescription() << std::endl;
+    std::cout << "context has " << context.listOperations().size() << "operations available." << std::endl;
+
 
     int h;
     matrix obj_points; //Matrix containing the object points

@@ -8,7 +8,7 @@
 #include <iostream>
 #include "ContextOperation.h"
 
-class LoadImagesFromCsv : public ContextOperation<LoadImagesFromCsv>{
+class LoadImagesOperation : public ContextOperation{
 public:
 
     virtual bool IsPossible(const Context &context) const;
