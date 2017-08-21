@@ -6,6 +6,7 @@
 #include "util.h"
 #include <stdexcept>
 #include <iomanip>
+#include<iostream>
 
 matrix multiply(const matrix &a, const matrix &b)
 {
@@ -19,13 +20,13 @@ matrix multiply(const matrix &a, const matrix &b)
     matrix c(a.size(), vector(b[0].size()));
 
 
-    //todo: VERIFY that matrix A and B can even be multiplied; the amount of rows in B should be equal to the amount of columns in A.
-    for (int row = 0; row < a.size(); row++)
+
+    for (unsigned int row = 0; row < a.size(); row++)
     {
-        for (int col = 0; col < b[0].size(); col++)
+        for (unsigned int col = 0; col < b[0].size(); col++)
         {
             // Multiply the row of A by the column of B to get the row, column of product.
-            for (int inner = 0; inner < a[0].size(); inner++)
+            for (unsigned int inner = 0; inner < a[0].size(); inner++)
             {
                 c[row][col] += a[row][inner] * b[inner][col];
             }
@@ -58,15 +59,16 @@ matrix concatenate(const matrix &a, const matrix &b)
     matrix c(rows, vector(columns + newColumns));
 
     //Loop over and perform for every row..
-    for (int i = 0; i < rows; ++i)
+    for (unsigned int i = 0; i < rows; ++i)
     {
         //copy and append all coumns from A to C.
-        for (int j = 0; j < columns; ++j)
+        for (unsigned int j = 0; j < columns; ++j)
         {
             c[i][j] = a[i][j];
         }
         //Copy and append to each row all columns from B to C.
-        for (int k = 0; k < newColumns; ++k)
+        for (unsigned int k = 0; k < newColumns; ++k)
+        for (unsigned int k = 0; k < newColumns; ++k)
         {
             c[i][k + columns] = b[i][k];
         }
@@ -132,4 +134,32 @@ Point::Point(double x, double y) : x(x), y(y)
 
 Point::Point()
 {}
+
+
+void clearScreen()
+{
+    if (system("CLS"))
+    {
+        system("clear");
+    }
+}
+
+void sleep(double seconds){
+    int msleep = static_cast<int>(seconds *1000);
+    std::this_thread::sleep_for(std::chrono::milliseconds(msleep));
+}
+
+void PressEnterToContinue()
+{
+    PressEnterToContinue(std::cout,std::cin);
+}
+void PressEnterToContinue(std::ostream &os,std::istream &is)
+{
+    os << "\nPress Enter to Continue..";
+    os.flush();
+    is.ignore(1000,'\n');
+}
+
+
+
 

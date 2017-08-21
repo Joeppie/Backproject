@@ -14,7 +14,8 @@ std::string LoadImagesOperation::Perform(Context &context) const
     {
         std::string fileName;
 
-        std::cout << "please enter the full filename of the csv containing the complete image metadata" << std::endl;
+        std::cout << "please enter the full filename of the csv containing the complete image metadata \n>";
+        std::cout.flush();
         std::cin >> fileName;
         auto images = ReadImageCsv(fileName);
 
@@ -24,13 +25,14 @@ std::string LoadImagesOperation::Perform(Context &context) const
             context.addImage(image);
         }
         std::stringstream fmt;
-        fmt << "Succesfully loaded " << images.size() << " from " << fileName << "\n";
+        fmt << "Succesfully loaded " << images.size() << " from " << fileName << ".\n";
+        sleep(2);
         return fmt.str();
 
     }
     catch (const std::exception &exception)
     {
-        return "An error was encountered loading the images.";
+        return "An error was encountered loading the images; does the file exist?";
     }
 }
 

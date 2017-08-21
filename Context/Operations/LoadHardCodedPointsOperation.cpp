@@ -8,7 +8,7 @@ std::string LoadHardCodedPointsOperation::Perform(Context &context) const
 {
     try
     {
-
+        //Admittedly, not many points are loaded.
         vector coordinate = {91564.54, 438048.29, -8.73};
         context.addPoint(coordinate);
 

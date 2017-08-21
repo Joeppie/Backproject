@@ -1,13 +1,23 @@
 //
 // Created by LijnenJJ on 16-8-2017.
 //
-
+#include <chrono>
+#include <thread>
 #ifndef BACKPROJECT_UTIL_H
 #define BACKPROJECT_UTIL_H
+
+#ifdef __cplusplus__
+#include <cstdlib>
+#else
+
+#include <stdlib.h>
+
+#endif
 
 #include <vector>
 #include <array>
 #include <iostream>
+#include <iomanip>
 
 struct Point
 {
@@ -61,7 +71,21 @@ matrix arrayToMatrix(const double (&jaggedArray)[size_x][size_y]);
 template<class T>
 T ReadAndValidate();
 
+
 #include "util.hpp"
 
+/**
+ * Clears the screen through an OS call.
+ */
+void clearScreen();
+
+/**
+ * Sleeps for the given amount of seconds.
+ * @param seconds
+ */
+void sleep(double seconds);
+
+void PressEnterToContinue();
+void PressEnterToContinue(std::ostream &os,std::istream &is);
 
 #endif //BACKPROJECT_UTIL_H

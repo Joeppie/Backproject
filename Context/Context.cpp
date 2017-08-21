@@ -2,6 +2,7 @@
 // Created by root on 8/19/17.
 //
 
+#include <limits>
 #include "Context.h"
 #include <iomanip>
 
@@ -22,14 +23,14 @@ std::ostream &operator<<(std::ostream &os, const Context &context)
 
     os << "BackProjection Context Object\n";
 
-    os << context.listImages().size() << "images { ";
+    os << std::setw(4) << context.listImages().size() << " images { ";
     for (auto image : context.listImages())
     {
         os << image->get_fileName() << " ";
     }
     os << "}\n";
 
-    os << context.listImages().size() << "points { ";
+    os << std::setw(4) << context.listPoints().size() << " points { ";
     for (auto point : context.listPoints())
     {
         os << "{" << point[0] << "," << point[1] << "," << point[2] << "} ";
@@ -63,8 +64,6 @@ const std::vector<std::vector<double>> Context::listPoints() const
 
 void Context::addImage(const std::shared_ptr<Image> image)
 {
-
-    std::cout << *image << std::endl;
     this->Images.push_back(image);
 }
 
@@ -77,37 +76,50 @@ void Context::Enter(std::ostream &os, std::istream &is)
 {
     for (;;)
     {
+        sleep(2);
+        clearScreen();
         os << *this << "\n";
         int index = 1;
         for (std::shared_ptr<ContextOperation> operation : this->listOperations())
         {
             if (operation->IsPossible(*this))
             {
-                os << "[" << std::setw(3) << index << "]";
+                os  << "    [ " << std::setw(1) << index << " ]";
             }
             else
             {
-                os << "*N/A*";
+                os << "    [N/A]";
             }
 
-            os << "   " << operation->getDescription() << "\n";
+            os << "       " << operation->getDescription() << "\n";
             index++;
         }
 
-        os << "[" << std::setw(3) << index << "]   Exit\n\n";
-
+        os << "    [ " << std::setw(1) << index << " ]       Exit\n" << std::endl;
 
         unsigned int choice = ReadAndValidate<unsigned int>();
-
+        sleep(0.2); //Has a more 'natural' feel, better UX
 
         //invalid choice, try again.
         if (choice == 0 || choice > Context::operations.size() + 1)
         {
+            os << "That is not an option." << std::endl;
+            sleep(2);
             continue;
         }
-            //user
-        else if (choice == Context::operations.size() + 1)
+
+        //Process valid input; either an operation, or exiting.
+        if (choice == Context::operations.size() + 1)
         {
+            os << "Exiting";
+            os.flush();
+            for (int i = 0; i < 4; ++i)
+            {
+                sleep(.5);
+                os << ".";
+                os.flush();
+            }
+
             return; //exits.
         }
         else //Input is valid index+1 of the extant operations
@@ -115,17 +127,19 @@ void Context::Enter(std::ostream &os, std::istream &is)
             std::shared_ptr<ContextOperation> operation = Context::operations[choice - 1];
             if (operation->IsPossible(*this))
             {
+                clearScreen();
                 os << operation->Perform(*this) << std::endl;
+                sleep(0.5);
+                PressEnterToContinue(os,is);
             }
             else
             {
                 os << "Sorry, is currently not possible to " << operation->getDescription() << "." << std::endl;
+                PressEnterToContinue(os,is);
             }
         }
 
     }
-
-
 }
 
 void Context::removeALlPoints()

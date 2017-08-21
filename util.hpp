@@ -4,7 +4,7 @@ template<class T>
 T ReadAndValidate()
 {
     T n;
-    std::cout << "enter value:";
+    std::cout << "enter value:\n>";
     std::cout.flush();
     std::cin >> n;
 
@@ -12,9 +12,8 @@ T ReadAndValidate()
     {
         std::cin.clear();
         std::cin.ignore(1000, '\n'); //throw away 1000 chars, or next end of line
-        std::cout << "\nincorrect value, please enter correct value";
+        std::cout << "\nincorrect value, please enter correct value\n>";
         std::cin >> n;
     }
-    // std::cout << "\n entered: " << n << std::endl;
     return n;
 }

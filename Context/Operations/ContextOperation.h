@@ -22,10 +22,24 @@ class ContextOperation
 {
 
 public:
+    /**
+     * Indicates whether the operation can be performed given the current state of affairs.
+     * @param context the context for which the operation may be runnable
+     * @return true when the operation may be performed
+     */
     virtual bool IsPossible(const Context &context) const =0;
 
+    /**
+     * Gives a short (infinitive verb) indication of what the operation does
+     * @return e.g. "use the context to do something"
+     */
     virtual std::string getDescription() const =0;
 
+    /**
+     * Performs the operation on the context
+     * @param context the context onto which to perform the operatoin
+     * @return a string detailing the results of the operation
+     */
     virtual std::string Perform(Context &context) const =0;
 
 };

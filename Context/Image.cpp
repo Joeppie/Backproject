@@ -78,6 +78,7 @@ bool Image::backProject(const vector &worldCoordinate, Point &imageCoordinate)
                 {1}
     };
 
+
     printMatrix(X);
 
     //Backproject use the transpose of the rotation+translation matrix.
