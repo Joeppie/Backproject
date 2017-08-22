@@ -54,8 +54,8 @@ The following packages are are required to be installed to build 64 bit:
  
  You may first need to install pthread via the package manager of your distribution.
  
-#code structure
-
+# code structure
+ Class diagram still WIP:
 ![Class Diagram SVG](https://github.com/Joeppie/Backproject/blob/master/Class%20Diagram.svg)
 
 # Third party-code
