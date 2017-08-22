@@ -43,7 +43,15 @@ The following packages are are required to be installed to build 64 bit:
 
 
 ### Linux
- git clone the repo, then use cmake to build the solution. 
+ git clone the repo, then use cmake to build the solution;
+ 
+ The following steps have been tested under linux Mint terminal:
+     git clone https://github.com/Joeppie/Backproject.git
+     cd Backproject/
+     cmake .
+     make
+ 
+ the executable will be Backproject and can be run using  ./Backproject
  
  You may first need to install pthread via the package manager of your distribution.
  
