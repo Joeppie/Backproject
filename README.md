@@ -1,11 +1,11 @@
 # Backproject
 
-This is a simple project which, using some [photogammetry](https://en.wikipedia.org/wiki/Photogrammetry), implements a backprojection of world-space coordinates into the 2d pixel coordinates of an image.
+This is a simple project which, using some [photogrammetry](https://en.wikipedia.org/wiki/Photogrammetry), implements the  back projection of world-space coordinates into the 2d pixel coordinates of an image.
 
 The code is hosted also at https://github.com/Joeppie/Backproject
 
 [![Documentation](https://codedocs.xyz/Joeppie/Backproject.svg)](https://codedocs.xyz/Joeppie/Backproject/files.html)
-
+documented using codedocs.xyz
 
 # Example usage/Demo
 
@@ -32,7 +32,6 @@ The code should compile on Linux, or minGW, it requires pthread and cmake.
 #### Msys2/windows
 Under windows, the code can be compiled under minGW, it has been tested using [msys2](http://www.msys2.org/).
 
-
 The following packages are are required to be installed to build 64 bit:
 
     pacman -Ss mingw-w64-x86_64-gcc
@@ -43,7 +42,6 @@ The following packages are are required to be installed to build 64 bit:
     pacman -Ss mingw-w64-x86_64-libwinpthread-git
     pacman -Ss mingw-w64-x86_64-winpthreads-git
     pacman -Ss mingw-w64-x86_64-cmake
-
 
 ### Linux
  git clone the repo, then use cmake to build the solution;
@@ -61,7 +59,8 @@ The following packages are are required to be installed to build 64 bit:
  
 # code structure
  Class diagram still WIP:
-![Class Diagram SVG](https://github.com/Joeppie/Backproject/blob/master/Class%20Diagram.svg)
+![Class Diagram SVG](https://github.com/Joeppie/Backproject/blob/master/Class%20Diagram.png?raw=true)
+(diagram created using draw.io)
 
 # Third party-code / License
 
