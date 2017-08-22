@@ -10,6 +10,21 @@ You can use the git-clone command to check out the project to a local folder.
 To build, run cmake on the source folder.
 
 The code should compile on Linux, or minGW, it requires pthread and cmake.
+
+#Example usage/Demo
+
+To get a feel of what the program can do, you can follow these steps:
+
+- Run the program
+- Type in 1 [enter] 
+    - enter images.csv as filename [enter] 
+- Type in 2 [enter]
+- Type in 4 [enter]
+    - [enter]  again
+
+The above will; load in a csv with metadata for images, then load in a coordinate.
+The backprojected coordinates wil then be shown.
+    
  
 #### Msys2/windows
 Under windows, the code can be compiled under minGW, it has been tested using [msys2](http://www.msys2.org/).
