@@ -19,7 +19,7 @@ std::string EnterPointsOperation::Perform(Context &context) const
     //'endless' loop that terminates when a non y/Y character is entered in response to the question posed below.
     for(;;)
     {
-        std::cout << "Would you like to add " << (count==0 ? "a point" : "another point") << "y/n?" << std::endl;
+        std::cout << "Would you like to add " << (count==0 ? "a point" : "another point") << "? (enter y or n)" << std::endl;
         yesOrNo  = ReadAndValidate<char>(); //Read a single char
 
         if(yesOrNo == 'y' || yesOrNo == 'Y')
@@ -31,6 +31,7 @@ std::string EnterPointsOperation::Perform(Context &context) const
             for (char ordinate = 'x'; ordinate <= 'z'; ++ordinate) {
                 std::cout << "please enter value for " << ordinate << ":" << std::endl;
                 point.push_back(ReadAndValidate<double>());
+                std::cin.ignore(10,'\n');
             }
           context.addPoint(point);
         }

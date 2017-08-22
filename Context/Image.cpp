@@ -2,6 +2,7 @@
 #include "Image.h"
 #include "../util.h"
 #include <iomanip>
+#include <stdexcept>
 
 //constructors
 Image::Image()
@@ -19,9 +20,13 @@ int Image::get_height() const
     return _height;
 }
 
-void Image::set_height(int _height)
+void Image::set_height(int height)
 {
-    Image::_height = _height;
+    if ( height <= 0)
+    {
+        throw std::invalid_argument("Image height must be greater than zero.");
+    }
+    Image::_height = height;
 }
 
 int Image::get_width() const
@@ -29,9 +34,13 @@ int Image::get_width() const
     return _width;
 }
 
-void Image::set_width(int _width)
+void Image::set_width(int width)
 {
-    Image::_width = _width;
+    if ( width <= 0)
+    {
+        throw std::invalid_argument("Image width must be greater than zero.");
+    }
+    Image::_width = width;
 }
 
 const std::string &Image::get_fileName() const
@@ -39,9 +48,9 @@ const std::string &Image::get_fileName() const
     return _fileName;
 }
 
-void Image::set_fileName(const std::string &_fileName)
+void Image::set_fileName(const std::string &fileName)
 {
-    Image::_fileName = _fileName;
+    Image::_fileName = fileName;
 }
 
 const std::shared_ptr<InteriorOrientation> &Image::get_IO() const
@@ -49,9 +58,18 @@ const std::shared_ptr<InteriorOrientation> &Image::get_IO() const
     return _IO;
 }
 
-void Image::set_IO(const std::shared_ptr<InteriorOrientation> &_IO)
+void Image::set_IO(const std::shared_ptr<InteriorOrientation> &IO)
 {
-    Image::_IO = _IO;
+    if (IO.get() == nullptr)
+    {
+        throw std::invalid_argument("Image IO must not contain nullptr.");
+    }
+    auto pp = IO->get_principalPoint();
+    if (pp.x <= 0 || pp.y <= 0 || pp.x > this->_width ||  pp.y > this->_height)
+    {
+        throw std::invalid_argument("Error: IO specifies that principal point lies outside of image.");
+    }
+    Image::_IO = IO;
 }
 
 const std::shared_ptr<ExteriorOrientation> &Image::get_EO() const
@@ -59,13 +77,20 @@ const std::shared_ptr<ExteriorOrientation> &Image::get_EO() const
     return _EO;
 }
 
-void Image::set_EO(const std::shared_ptr<ExteriorOrientation> &_EO)
+void Image::set_EO(const std::shared_ptr<ExteriorOrientation> &EO)
 {
-    Image::_EO = _EO;
+    if (EO.get() == nullptr)
+    {
+        throw std::invalid_argument("Image EO must not contain nullptr.");
+    }
+    Image::_EO = EO;
 }
 
 bool Image::backProject(const vector &worldCoordinate, Point &imageCoordinate)
 {
+
+//Avoid spamming when normally executing program (due to printmatrix statements that help debug)
+
 
     //Create a column 'vector' (or really just a 3x1 matrix, so that we can multiply and happily use results.)
     matrix X = {{worldCoordinate[0]},
@@ -94,14 +119,13 @@ bool Image::backProject(const vector &worldCoordinate, Point &imageCoordinate)
     printMatrix(k);
 
     //Rotate camera properly into world frame
-
     const double deg_to_rad = M_PI / 180.0;
 
     double pitch2 = 180 * deg_to_rad;
     double yaw2 = 90 * deg_to_rad;
     double roll2 = 0 * deg_to_rad;
 
-//Assemble outer rotation matrix
+    //Assemble outer rotation matrix
 
     const matrix rotationY2 = {{cos(pitch2),  0, sin(pitch2)},
                                {0,            1, 0},
@@ -118,20 +142,11 @@ bool Image::backProject(const vector &worldCoordinate, Point &imageCoordinate)
     matrix RMtemp = multiply(multiply(rotationX2, rotationY2), rotationZ2);
     matrix RM = multiply(transformation, RMtemp);
 
-    //Compute transpose - can be copied into util.cpp later
+    //Compute transpose
+    matrix RMt = transpose(RM);
 
-    matrix RMt(3, vector(3));
-
-    for (int i = 0; i < 3; ++i)
-    {
-        for (int j = 0; j < 3; ++j)
-        {
-            RMt[j][i] = RM[i][j];
-        }
-    }
 
     //Relate translation component to world frame
-
     vector translation = this->_EO->get_translation();
     matrix columnVectorTranslation = {{translation[0]},
                                       {translation[1]},
@@ -142,21 +157,16 @@ bool Image::backProject(const vector &worldCoordinate, Point &imageCoordinate)
     printMatrix(tR);
 
     //Concatenate rotation and translation elements
-
     matrix Rt = concatenate(RMt, tR);
     printMatrix(Rt);
 
     //Compute Projection matrix
-
     matrix P = multiply(k, Rt);
-
     printMatrix(P);
 
 
     //Return image coordinates from object point
-
     matrix x = multiply(P, X);
-
     printMatrix(x);
 
     imageCoordinate.x = x[0][0] / x[2][0];

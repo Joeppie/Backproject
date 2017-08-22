@@ -11,6 +11,10 @@ const std::vector<double> &ExteriorOrientation::get_rotation() const
 
 void ExteriorOrientation::set_rotation(const std::vector<double> &rotation)
 {
+    if (rotation.size() != 3)
+    {
+        throw std::invalid_argument("EO rotation must be a vector with 3 elements.");
+    }
     ExteriorOrientation::_rotation = rotation;
 }
 
@@ -21,9 +25,13 @@ const std::vector<double> &ExteriorOrientation::get_translation() const
 }
 
 
-void ExteriorOrientation::set_translation(const std::vector<double> &_translation)
+void ExteriorOrientation::set_translation(const std::vector<double> &translation)
 {
-    ExteriorOrientation::_translation = _translation;
+    if (translation.size() != 3)
+    {
+        throw std::invalid_argument("EO translation must be a vector with 3 elements.");
+    }
+    ExteriorOrientation::_translation = translation;
 }
 
 matrix ExteriorOrientation::get_transformation()

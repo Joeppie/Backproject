@@ -4,6 +4,7 @@
 
 
 #include "../util.h"
+#include "../matrix.h"
 
 
 /**
@@ -35,9 +36,9 @@ public:
 
 /**
  * sets the translation
- * @param _translation translation as a vector of doubles, containing translation for respectively x,y,z
+ * @param translation translation as a vector of doubles, containing translation for respectively x,y,z
  */
-    void set_translation(const vector &_translation);
+    void set_translation(const vector &translation);
 
 
 /**

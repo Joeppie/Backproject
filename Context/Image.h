@@ -48,9 +48,9 @@ public:
 
     /**
      *
-     * @param _height sets the height of the image.
+     * @param height sets the height of the image.
      **/
-    void set_height(int _height);
+    void set_height(int height);
 
     /**
      *
@@ -66,9 +66,9 @@ public:
 
     /**
      *
-     * @param _width the width of the image in pixels
+     * @param width the width of the image in pixels
      */
-    void set_width(int _width);
+    void set_width(int width);
 
     /**
      * gets the filename of the image
@@ -78,9 +78,9 @@ public:
 
     /**
      * sets the filename of the image
-     * @param _fileName  the filename and path, relative to the working directory of the executable.
+     * @param fileName  the filename and path, relative to the working directory of the executable.
      */
-    void set_fileName(const std::string &_fileName);
+    void set_fileName(const std::string &fileName);
 
     /**
      * retrieves the Interior Orientation of the image
@@ -90,9 +90,9 @@ public:
 
     /**
      * sets the Interior Orientation of the image
-     * @param _IO the InteriorOrientation
+     * @param IO the InteriorOrientation
      */
-    void set_IO(const std::shared_ptr<InteriorOrientation> &_IO);
+    void set_IO(const std::shared_ptr<InteriorOrientation> &IO);
 
     /**
      * retrieves the Exterior Orientation of the image
@@ -104,7 +104,7 @@ public:
      * sets the Exterior Orientation of the image
      * @param _IO the ExteriorOrientation
      */
-    void set_EO(const std::shared_ptr<ExteriorOrientation> &_EO);
+    void set_EO(const std::shared_ptr<ExteriorOrientation> &EO);
 
 private:
     std::shared_ptr<InteriorOrientation> _IO;

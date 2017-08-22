@@ -25,7 +25,7 @@ std::ostream &operator<<(std::ostream &os, const Context &context)
     }
     os << "}\n";
 
-    os << context.listOperations().size() << "    operations available.";
+    os<< std::setw(4)  << context.listOperations().size() << "    operations available.";
 
     return os;
 }
@@ -64,7 +64,6 @@ void Context::Enter(std::ostream &os, std::istream &is)
 {
     for (;;)
     {
-        sleep(2);
         clearScreen();
         os << *this << "\n\n";
         int index = 1;
@@ -86,13 +85,12 @@ void Context::Enter(std::ostream &os, std::istream &is)
         os << "    [ " << std::setw(1) << index << " ]       Exit\n" << std::endl;
 
         unsigned int choice = ReadAndValidate<unsigned int>();
-        sleep(0.2); //Has a more 'natural' feel, better UX
 
         //invalid choice, try again.
         if (choice == 0 || choice > Context::operations.size() + 1)
         {
             os << "That is not an option." << std::endl;
-            sleep(2);
+            PressEnterToContinue(os,is);
             continue;
         }
 
@@ -116,8 +114,13 @@ void Context::Enter(std::ostream &os, std::istream &is)
             if (operation->IsPossible(*this))
             {
                 clearScreen();
+                try {
                 os << operation->Perform(*this) << std::endl;
-                sleep(0.5);
+                }
+                catch(...)
+                {
+                    os << "An unexpected error occured trying to perform the operation." << std::endl;
+                }
                 PressEnterToContinue(os,is);
             }
             else
@@ -132,6 +135,6 @@ void Context::Enter(std::ostream &os, std::istream &is)
 
 void Context::removeALlPoints()
 {
-    this->Points.clear();
+    this->Images.clear();
 }
 

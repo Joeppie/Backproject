@@ -18,9 +18,9 @@ public:
 
 /**
  * sets the focal length of the camera
- * @param _focalLength the focal length in millimeters.
+ * @param focalLength the focal length in millimeters.
  */
-    void set_focalLength(double _focalLength);
+    void set_focalLength(double focalLength);
 
     /**
      * Retrieves the principal point of the image;
@@ -32,9 +32,9 @@ public:
 
     /**
      * sets the principal point of the image
-     * @param _principalPoint
+     * @param principalPoint
      */
-    void set_principalPoint(Point _principalPoint);
+    void set_principalPoint(Point principalPoint);
 
 private:
     double _focalLength;

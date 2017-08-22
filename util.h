@@ -48,44 +48,6 @@ struct Point
 
 
 /**
- * represents a 2d matrix of double values using a std::vector<std::vector<double>>
- */
-using matrix = std::vector<std::vector<double>>;
-/**
- * represents a vector- or list- of double  values using a std::vector<double>
- */
-using vector = std::vector<double>;
-
-/**
- * Multiplies two matrices to create a new one with the result of the mulitplication.
- * @param a right-hand side matrix
- * @param b left-hand size matrix
- */
-matrix multiply(const matrix &a, const matrix &b);
-
-/**
- * Pretty-prints a matrix to the screen
- * @param matrix a matrix as represented by a std::vector<std::vector<double>>
- */
-void printMatrix(const matrix &matrix);
-
-/**
- * swaps the sign on every value inside the matrix; e.g. a column with 1 becomes -1 and vice versa
- * @param a
- */
-matrix negate(const matrix &a);
-
-/**
- * 'Concatenates' a matrix b, to matrix A; this fills result matrix C with all rows and columns of A, and each row ends with the columns of B.
- * @param a original matrix
- * @param b matrix to concatenate with, number of rows must match A.
- */
-matrix concatenate(const matrix &a, const matrix &b);
-
-template<size_t size_x, size_t size_y>
-matrix arrayToMatrix(const double (&jaggedArray)[size_x][size_y]);
-
-/**
  * Reads a value of class T, and then returns the result, forcing the user to enter a correct value.
  * @tparam T
  * @param prompt The initial prompt asking the user to enter a value via std::cout.

@@ -17,6 +17,7 @@
      {
          std::cout << *image << std::endl;
          PressEnterToContinue();
+         clearScreen();
      }
 
      return "";

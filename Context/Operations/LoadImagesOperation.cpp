@@ -8,29 +8,35 @@
 
 std::string LoadImagesOperation::Perform(Context &context) const
 {
-    try
-    {
+    try {
         std::string fileName;
 
-        std::cout << "please enter the full filename of the csv containing the complete image metadata (hint: images.csv is an existing file)\n>";
+        std::cout
+                << "please enter the full filename of the csv containing the complete image metadata (hint: images.csv is an existing file)\n>";
         std::cout.flush();
         std::cin >> fileName;
+        std::cin.ignore(1, '\n');
         auto images = ReadImageCsv(fileName);
 
         //Add each of the images (std::shared_ptr<Image> to the images known in the Context.)
-        for (auto image :  images)
-        {
+        for (auto image :  images) {
             context.addImage(image);
         }
         std::stringstream fmt;
         fmt << "Succesfully loaded " << images.size() << " from " << fileName << ".\n";
-        sleep(2);
         return fmt.str();
-
     }
-    catch (const std::exception &exception)
+
+    catch( const std::invalid_argument& e ) {
+        std::stringstream fmt;
+        fmt << "The following input error was found loading the file: "  << e.what() << "\n";
+        return fmt.str();
+    }
+    catch (const std::exception &e)
     {
-        return "An error was encountered loading the images; does the file exist?";
+        std::stringstream fmt;
+        fmt << "An unknown error occured loading the file: "  << e.what() << "\n";
+        return fmt.str();
     }
 }
 
