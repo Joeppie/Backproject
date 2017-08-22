@@ -31,7 +31,6 @@ std::string EnterPointsOperation::Perform(Context &context) const
             for (char ordinate = 'x'; ordinate <= 'z'; ++ordinate) {
                 std::cout << "please enter value for " << ordinate << ":" << std::endl;
                 point.push_back(ReadAndValidate<double>());
-                std::cin.ignore(10,'\n');
             }
           context.addPoint(point);
         }
