@@ -2,15 +2,6 @@
 
 This is a simple project which, using some [photogammetry](https://en.wikipedia.org/wiki/Photogrammetry), implements a backprojection of world-space coordinates into the 2d pixel coordinates of an image.
 
-
-
-# Building
-You can use the git-clone command to check out the project to a local folder.
-
-To build, run cmake on the source folder.
-
-The code should compile on Linux, or minGW, it requires pthread and cmake.
-
 # Example usage/Demo
 
 To get a feel of what the program can do, you can follow these steps:
@@ -25,6 +16,13 @@ To get a feel of what the program can do, you can follow these steps:
 The above will; load in a csv with metadata for images, then load in a coordinate.
 The backprojected coordinates wil then be shown.
     
+
+# Building
+You can use the git-clone command to check out the project to a local folder.
+
+To build, run cmake on the source folder.
+
+The code should compile on Linux, or minGW, it requires pthread and cmake.
  
 #### Msys2/windows
 Under windows, the code can be compiled under minGW, it has been tested using [msys2](http://www.msys2.org/).
