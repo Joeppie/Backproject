@@ -11,7 +11,7 @@ To build, run cmake on the source folder.
 
 The code should compile on Linux, or minGW, it requires pthread and cmake.
 
-#Example usage/Demo
+# Example usage/Demo
 
 To get a feel of what the program can do, you can follow these steps:
 
