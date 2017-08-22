@@ -25,7 +25,7 @@ std::ostream &operator<<(std::ostream &os, const Context &context)
     }
     os << "}\n";
 
-    os<< std::setw(4)  << context.listOperations().size() << "    operations available.";
+    os << std::setw(4) << context.listOperations().size() << "    operations available.";
 
     return os;
 }
@@ -71,7 +71,7 @@ void Context::Enter(std::ostream &os, std::istream &is)
         {
             if (operation->IsPossible(*this))
             {
-                os  << "    [ " << std::setw(1) << index << " ]";
+                os << "    [ " << std::setw(1) << index << " ]";
             }
             else
             {
@@ -90,7 +90,7 @@ void Context::Enter(std::ostream &os, std::istream &is)
         if (choice == 0 || choice > Context::operations.size() + 1)
         {
             os << "That is not an option." << std::endl;
-            PressEnterToContinue(os,is);
+            PressEnterToContinue(os, is);
             continue;
         }
 
@@ -114,19 +114,20 @@ void Context::Enter(std::ostream &os, std::istream &is)
             if (operation->IsPossible(*this))
             {
                 clearScreen();
-                try {
-                os << operation->Perform(*this) << std::endl;
+                try
+                {
+                    os << operation->Perform(*this) << std::endl;
                 }
-                catch(...)
+                catch (...)
                 {
                     os << "An unexpected error occured trying to perform the operation." << std::endl;
                 }
-                PressEnterToContinue(os,is);
+                PressEnterToContinue(os, is);
             }
             else
             {
                 os << "Sorry, is currently not possible to " << operation->getDescription() << "." << std::endl;
-                PressEnterToContinue(os,is);
+                PressEnterToContinue(os, is);
             }
         }
 

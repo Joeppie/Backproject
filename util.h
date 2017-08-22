@@ -50,8 +50,6 @@ struct Point
 /**
  * Reads a value of class T, and then returns the result, forcing the user to enter a correct value.
  * @tparam T
- * @param prompt The initial prompt asking the user to enter a value via std::cout.
- * @param tryAgain The message that shows when the user did not enter a valid value.
  * @return a valid value of T.
  */
 template<class T>
