@@ -2,6 +2,9 @@
 
 This is a simple project which, using some [photogammetry](https://en.wikipedia.org/wiki/Photogrammetry), implements a backprojection of world-space coordinates into the 2d pixel coordinates of an image.
 
+The code is hosted also at https://github.com/Joeppie/Backproject
+
+
 # Example usage/Demo
 
 To get a feel of what the program can do, you can follow these steps:
