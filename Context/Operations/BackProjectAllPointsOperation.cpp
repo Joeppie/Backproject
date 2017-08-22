@@ -31,7 +31,7 @@ std::string BackProjectAllPointsOperation::Perform(Context &context) const
             bool insideImage = image->backProject(point, pixelCoordinates);
             if (insideImage)
             {
-                output << "      visible in image    " << image->get_fileName() << ", at pixels ("
+                output << "      visible in image    " << image->get_fileName() << ", at ("
                        << pixelCoordinates.x << "," << pixelCoordinates.y << ")\n";
             }
             else

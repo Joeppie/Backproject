@@ -1,3 +1,5 @@
+#define verbose_back_project
+
 //
 // Created by Joep on 22-8-2017.
 //
@@ -94,7 +96,7 @@ matrix concatenate(const matrix &a, const matrix &b)
 
 
 
-void printMatrix(const matrix &matrix)
+void printMatrix(const matrix &matrix,const std::string &description)
 {
 #ifdef verbose_back_project
     if (matrix.size() == 0 || matrix[0].size() == 0)
@@ -104,11 +106,11 @@ void printMatrix(const matrix &matrix)
     }
 
     const int seperatorwidth = 1;
-    const int columnwidth = 10;
+    const int columnwidth = 16;
     const int barLength = columnwidth * matrix[0].size() +
                           seperatorwidth * (matrix[0].size() + 3);
 
-
+    std::cout << description << ":" << std::endl;
     for (const auto &row : matrix)
     {
         std::cout << std::string(barLength, '-') << "\n"; //Seperator between rows or begin.

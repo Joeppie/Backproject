@@ -133,8 +133,12 @@ void Context::Enter(std::ostream &os, std::istream &is)
     }
 }
 
-void Context::removeALlPoints()
+void Context::removeAllPoints()
+{
+    this->Points.clear();
+}
+
+void Context::removeAllImages()
 {
     this->Images.clear();
 }
-

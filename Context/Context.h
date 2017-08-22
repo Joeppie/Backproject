@@ -77,7 +77,12 @@ public:
     /**
      * Removes all of the points in the context
      */
-    void removeALlPoints();
+    void removeAllPoints();
+
+    /**
+ * Removes all of the images in the context
+ */
+    void removeAllImages();
 
     /**
      * 'Enter' the context and let the user interact with it

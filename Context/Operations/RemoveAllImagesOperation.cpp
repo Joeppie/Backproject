@@ -17,6 +17,6 @@ std::string RemoveAllImagesOperation::getDescription() const
 std::string RemoveAllImagesOperation::Perform(Context &context) const
 {
 
-    context.removeALlPoints();
+    context.removeAllImages();
     return "Removed all images from context.";
 }

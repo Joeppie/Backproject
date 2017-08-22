@@ -1,3 +1,5 @@
+
+
 #include <iostream>
 #include <memory>
 #include "util.h"
@@ -13,7 +15,7 @@
 #include "Context/Operations/PurposelyBrokenOperation.h"
 
 
-#define verbose_back_project 0
+
 
 /**
  * Entry point of the program.

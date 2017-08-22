@@ -13,6 +13,6 @@ std::string RemoveAllPointsOperation::getDescription() const
 
 std::string RemoveAllPointsOperation::Perform(Context &context) const
 {
-    context.removeALlPoints();
+    context.removeAllPoints();
     return "removed all points from context.";
 }

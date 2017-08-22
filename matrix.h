@@ -25,8 +25,9 @@ matrix multiply(const matrix &a, const matrix &b);
 /**
  * Pretty-Prints the matrix, but only if verbose_back_project has been #defined to a nonzero value.
  * @param matrix the matrix to print to std::cout.
+ * @param description the description to be printed out above the matrix.
  */
-void printMatrix(const matrix &matrix);
+void printMatrix(const matrix &matrix,const std::string &description);
 
 /**
  * swaps the sign on every value inside the matrix; e.g. a column with 1 becomes -1 and vice versa
