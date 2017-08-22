@@ -31,6 +31,10 @@ The following packages are are required to be installed to build 64 bit:
  git clone the repo, then use cmake to build the solution. 
  
  You may first need to install pthread via the package manager of your distribution.
+ 
+#code structure
+
+![Class Diagram SVG](https://github.com/Joeppie/Backproject/blob/master/Class%20Diagram.svg)
 
 # Third party-code
 
