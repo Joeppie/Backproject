@@ -44,6 +44,7 @@ The following packages are are required to be installed to build 64 bit:
  git clone the repo, then use cmake to build the solution;
  
  The following steps have been tested under linux Mint terminal:
+ 
      git clone https://github.com/Joeppie/Backproject.git
      cd Backproject/
      cmake .
