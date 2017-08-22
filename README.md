@@ -4,7 +4,7 @@ This is a simple project which, using some [photogammetry](https://en.wikipedia.
 
 The code is hosted also at https://github.com/Joeppie/Backproject
 
-[![Documentation](https://codedocs.xyz/Joeppie/Backproject.svg)](https://codedocs.xyz/Joeppie/Backproject/)
+[![Documentation](https://codedocs.xyz/Joeppie/Backproject.svg)](https://codedocs.xyz/Joeppie/Backproject/files.html)
 
 
 # Example usage/Demo
