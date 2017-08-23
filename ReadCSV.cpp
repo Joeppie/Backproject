@@ -1,6 +1,6 @@
 
 #include "ReadCSV.h"
-#include "thirdparty/csv.h"
+#include "thirdparty/fast-cpp-csv-parser/csv.h"
 
 std::vector<std::shared_ptr<Image>> ReadImageCsv(std::string fileName)
 {
