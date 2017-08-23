@@ -11,6 +11,9 @@
 #include "ExteriorOrientation.h"
 
 
+/**
+ * Represents the metadata of an image
+ */
 class Image
 {
 private:
