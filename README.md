@@ -53,7 +53,7 @@ Note: google test is also required; the package has been added.
  
  The following steps have been tested under linux Mint terminal:
  
-     git clone https://github.com/Joeppie/Backproject.git
+     git clone --recursive https://github.com/Joeppie/Backproject.git
      cd Backproject/
      cmake .
      make
