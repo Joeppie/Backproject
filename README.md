@@ -62,9 +62,9 @@ Note: google test is also required; the package has been added.
  
  You may first need to install and googletest pthread via the package manager of your distribution.
  
-# code structure
+# Code structure
 
-Up-to-date [full documentation]((https://codedocs.xyz/Joeppie/Backproject/files.html)) is available.
+Up-to-date [full documentation](https://codedocs.xyz/Joeppie/Backproject/files.html) is available.
 
 Class Diagram:
 ![Class Diagram SVG](https://github.com/Joeppie/Backproject/blob/master/Class%20Diagram.png?raw=true)
