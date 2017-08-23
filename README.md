@@ -82,13 +82,15 @@ Through the Context, the ContextOperations can add and remove images, points, an
 
 # Third party-code / License
 
+#### fast-cpp-csvparser
 We use a CSV reading library written by Ben Strasser; https://github.com/ben-strasser/fast-cpp-csv-parser
-This pertains to https://github.com/Joeppie/Backproject/blob/master/thirdparty/csv.h
+#### googletest
+We use googletest as a unittest framework: https://github.com/google/googletest
 
-Copyright: (2012-2015) Ben Strasser <code@ben-strasser.net>
-License: BSD-3
+
 
 # License
+This code is licensed under the MIT license so that it may be used by whomever finds it useful.
 
 MIT License
 
