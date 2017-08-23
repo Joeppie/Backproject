@@ -12,6 +12,7 @@
  * This operation's perform method is 66% likely to throw an exception.
  */
 class PurposelyBrokenOperation : public ContextOperation {
+public:
      bool IsPossible(const Context &context) const;
      std::string getDescription() const;
      std::string Perform(Context &context) const;
