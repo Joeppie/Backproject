@@ -1,38 +1,56 @@
-//
-// Created by Joep on 23-8-2017.
-//
-
 #include <vector>
 #include "RunTestCases.h"
 #include "../Context/Context.h"
+#include "../Context/Operations/RemoveAllPointsOperation.h"
 #include <gtest/gtest.h> // googletest header file
 
+//google test has examples here: https://github.com/google/googletest/blob/master/googletest/docs/Samples.md
 
+/**
+ * Tests whether the RemoveAllPointsOperation works as expected.
+ */
+TEST(RemoveAllPointsOperation,RemoveAllPointsOperation) {
 
-
-//To be honest, I am disappointed by how hard gtest is to use https://github.com/google/googletest/blob/master/googletest/docs/Samples.md
-
-
-const char *actualValTrue  = "hello gtest";
-const char *actualValFalse = "hello world";
-const char *expectVal      = "hello gtest";
-
-
-TEST(Context,removeAllPoints) {
-    std::cout << "Running add and remove points test on Context" << std::endl;
+    std::cout << "\ntesting RemoveAllPointsOperation " << std::endl;
+    //Initialize the objects required to test
     Context context;
+    RemoveAllPointsOperation operation;
+
+    //Verify that operation cannot be run if there are no points.
+    EXPECT_EQ(false, operation.IsPossible(context));
     context.addPoint(std::vector<double> {1,2,3});
-    EXPECT_EQ(1u, context.listPoints().size());
-    context.removeAllPoints();
-    EXPECT_EQ(0u, context.listPoints().size());
+    //Verify that operation can run when there are points.
+    EXPECT_EQ(true, operation.IsPossible(context));
+
+    //Verify the operations performs correctly.
+    std::string result = operation.Perform(context);
+    EXPECT_EQ("removed all points from context.",result);
+
+    //The operation should now report that it is no longer possible.
+    EXPECT_EQ(false, operation.IsPossible(context));
 }
 
-/*
+/**
+ * Test that the 'set_width' of Image validates properly.
+ */
+TEST(Image,width__setter_validation) {
 
-TEST(StrCompare, CStrEqual) {
-EXPECT_STREQ(expectVal, actualValTrue);
+    std::cout << "\ntesting Image width__setter_validation" << std::endl;
+    Image image;
+    //should throw an exception.
+    ASSERT_ANY_THROW(image.set_width(-5));
+    //Should not throw an exception
+    image.set_width(50);
 }
 
-TEST(StrCompare, CStrNotEqual) {
-EXPECT_STREQ(expectVal, actualValFalse);
-}*/
+/**
+ * A very obviously incorrect test/
+ */
+TEST(Broken,purposel_broken_test) {
+
+    std::cout << "\ntesting purposely broken test" << std::endl;
+    //Test something that should work, obviously.
+    auto innocentLambda = []() { };
+    ASSERT_ANY_THROW(innocentLambda);
+
+}

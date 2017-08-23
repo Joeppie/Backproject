@@ -10,6 +10,7 @@
  */
 class RemoveAllPointsOperation : public ContextOperation
 {
+public:
     virtual bool IsPossible(const Context &context) const;
 
     virtual std::string getDescription() const;
