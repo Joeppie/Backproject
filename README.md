@@ -63,9 +63,22 @@ Note: google test is also required; the package has been added.
  You may first need to install and googletest pthread via the package manager of your distribution.
  
 # code structure
- Class diagram still WIP:
+
+Up-to-date [full documentation]((https://codedocs.xyz/Joeppie/Backproject/files.html)) is available.
+
+Class Diagram:
 ![Class Diagram SVG](https://github.com/Joeppie/Backproject/blob/master/Class%20Diagram.png?raw=true)
-(diagram created using draw.io)
+([diagram](https://github.com/Joeppie/Backproject/blob/master/Class%20Diagram.xml) created using [draw.io](https://draw.io))
+
+The actual backprojection takes place inside the Image class, which uses parameters from the Image, ExteriorOrientation and InteriorOrientation.
+The main UI of the application is powered by the 'context' which displays all known ContextOperations in a menu through the 'Enter method'
+
+![Menu Screenshot](https://github.com/Joeppie/Backproject/blob/master/screenshot.png?raw=true)
+
+Through the Context, the ContextOperations can add and remove images, points, and run the backprojection, as per user input;
+
+![back projection Screenshot](https://github.com/Joeppie/Backproject/blob/master/screenshot2.png?raw=true)
+
 
 # Third party-code / License
 
