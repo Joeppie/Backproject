@@ -23,7 +23,9 @@ The backprojected coordinates wil then be shown.
     
 
 # Building
-You can use the git-clone command to check out the project to a local folder.
+You can use the git clone --recursive command to check out the project to a local folder;
+
+    git clone --recursive https://github.com/Joeppie/Backproject.git
 
 To build, run cmake on the source folder.
 
