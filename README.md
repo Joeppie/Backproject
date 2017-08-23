@@ -4,7 +4,7 @@ This is a simple project which, using some [photogrammetry](https://en.wikipedia
 
 The code is hosted also at https://github.com/Joeppie/Backproject
 
-[![Documentation](https://codedocs.xyz/Joeppie/Backproject.svg)](https://codedocs.xyz/Joeppie/Backproject/files.html)
+[![Documentation](https://codedocs.xyz/Joeppie/Backproject.svg)](https://codedocs.xyz/Joeppie/Backproject/hierarchy.html)
 documented using codedocs.xyz
 
 # Example usage/Demo
@@ -64,7 +64,7 @@ Note: google test is also required; the package has been added.
  
 # Code structure
 
-Up-to-date [full documentation](https://codedocs.xyz/Joeppie/Backproject/files.html) is available.
+Up-to-date [full documentation](https://codedocs.xyz/Joeppie/Backproject/hierarchy.html) is available.
 
 Class Diagram:
 ![Class Diagram SVG](https://github.com/Joeppie/Backproject/blob/master/Class%20Diagram.png?raw=true)
