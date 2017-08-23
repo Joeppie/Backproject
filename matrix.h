@@ -1,7 +1,3 @@
-//
-// Created by Joep on 22-8-2017.
-//
-
 #ifndef BACKPROJECT_MATRIX_H
 #define BACKPROJECT_MATRIX_H
 
