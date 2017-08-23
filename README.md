@@ -34,14 +34,17 @@ Under windows, the code can be compiled under minGW, it has been tested using [m
 
 The following packages are are required to be installed to build 64 bit:
 
-    pacman -Ss mingw-w64-x86_64-gcc
-    pacman -Ss mingw-w64-x86_64-gcc-libs
-    pacman -Ss mingw-w64-x86_64-gcc-libgfortran
-    pacman -Ss mingw-w64-x86_64-gdb
-    pacman -Ss mingw-w64-x86_64-make
-    pacman -Ss mingw-w64-x86_64-libwinpthread-git
-    pacman -Ss mingw-w64-x86_64-winpthreads-git
-    pacman -Ss mingw-w64-x86_64-cmake
+    pacman -S mingw-w64-x86_64-gcc
+    pacman -S mingw-w64-x86_64-gcc-libs
+    pacman -S mingw-w64-x86_64-gcc-libgfortran
+    pacman -S mingw-w64-x86_64-gdb
+    pacman -S mingw-w64-x86_64-make
+    pacman -S mingw-w64-x86_64-libwinpthread-git
+    pacman -S mingw-w64-x86_64-winpthreads-git
+    pacman -S mingw-w64-x86_64-cmake
+    pacman -S mingw64/mingw-w64-x86_64-gtest
+
+Note: google test is also required; the package has been added.
 
 ### Linux
  git clone the repo, then use cmake to build the solution;
@@ -55,7 +58,7 @@ The following packages are are required to be installed to build 64 bit:
  
  the executable will be Backproject and can be run using  ./Backproject
  
- You may first need to install pthread via the package manager of your distribution.
+ You may first need to install and googletest pthread via the package manager of your distribution.
  
 # code structure
  Class diagram still WIP:
