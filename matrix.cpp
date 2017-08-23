@@ -23,8 +23,6 @@ matrix multiply(const matrix &a, const matrix &b)
 
     matrix c(a.size(), vector(b[0].size()));
 
-
-
     for (unsigned int row = 0; row < a.size(); row++)
     {
         for (unsigned int col = 0; col < b[0].size(); col++)

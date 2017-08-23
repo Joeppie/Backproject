@@ -1,8 +1,10 @@
 #include <vector>
+#include <gtest/gtest.h> // googletest header file
+
 #include "RunTestCases.h"
 #include "../Context/Context.h"
 #include "../Context/Operations/RemoveAllPointsOperation.h"
-#include <gtest/gtest.h> // googletest header file
+#include "../matrix.h"
 
 //google test has examples here: https://github.com/google/googletest/blob/master/googletest/docs/Samples.md
 
@@ -44,6 +46,22 @@ TEST(Image,width__setter_validation) {
 }
 
 /**
+ * Test that multiply throws an exception when attempting to multiply matrices that cannot be multiplied.
+ */
+TEST(Matrix,multiplication_fails){
+    std::cout << "\ntesting matrix multiplication " << std::endl;
+    matrix m_2by2 = matrix {{1, 2},
+                            {3, 4}};
+
+    matrix m_3by3 = matrix {{1, 2, 3},
+                            {3, 4, 5},
+                            {6, 7, 8}};
+
+    matrix result;
+    ASSERT_ANY_THROW(result = multiply(m_2by2,m_3by3));
+}
+
+/**
  * A very obviously incorrect test/
  */
 TEST(Broken,purposel_broken_test) {
@@ -54,3 +72,5 @@ TEST(Broken,purposel_broken_test) {
     ASSERT_ANY_THROW(innocentLambda);
 
 }
+
+
