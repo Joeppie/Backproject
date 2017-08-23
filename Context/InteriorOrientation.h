@@ -4,7 +4,7 @@
 
 #include "../util.h"
 
-/*!
+/**
  * Represents the Interior Orientation/Internal parameters corresponding to an image; camera/sensor information
  */
 class InteriorOrientation
